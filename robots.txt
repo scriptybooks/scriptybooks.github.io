@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://scriptybooks.github.io/sitemap.xml 
+Sitemap: http://blog.scriptybooks.com/sitemap.xml 
