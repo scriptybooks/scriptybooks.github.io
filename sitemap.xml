@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>
+            http://scriptybooks.github.io/blog/2013/04/15/scriptybooks-open-source-step-one/
+        </loc>
+        <lastmod>2013-04-15T13:16:39-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://scriptybooks.github.io/blog/archives/</loc>
+        <lastmod>2013-04-15T13:16:39-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://scriptybooks.github.io/</loc>
+        <lastmod>2013-04-15T13:16:39-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://scriptybooks.github.io/robots.txt</loc>
+        <lastmod>2013-04-15T13:07:47-06:00</lastmod>
+    </url>
+</urlset>
