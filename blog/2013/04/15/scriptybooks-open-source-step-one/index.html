@@ -9,8 +9,8 @@
   <meta name="author" content="ScriptyBooks">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="I&#8217;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
+right about sharing it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,7 +92,48 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><p>I&#8217;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
+right about sharing it as a Rails app. My original <em>bookserver</em> was a simple Node.js app and a command-line build tool, and that seemed like a
+better path for open source, although I didn&#8217;t get far down it before practical concerns on the business side led me to
+switch to Ruby, Nokogiri, and Rails.</p>
+
+<h3>Enter the Jekyll</h3>
+
+<p><a href="http://octopress.org">Octopress</a> + <a href="http://jekyllrb.com/">Jekyll</a> is pretty cool stuff. Out of the box, the default blog doesn&#8217;t look like much&#8230;.
+but the cmd-line blogging tool is solid. It leverages git and GitHub to the max.
+<a href="http://octopress.org/docs/deploying/github/">Deploying</a> to <a href="http://pages.github.com/">GitHub Pages</a> is dialed in with its own <code>source</code> branch.
+Octopress even includes tasks for updating from the original project:
+Here&#8217;s how you <a href="http://octopress.org/docs/updating/">update the software</a>, all git based. I should have clued into this stuff a long time ago.</p>
+
+<p>I think the git usage will impress you. Here&#8217;s a little taste of the experience:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>csmith:scriptybooks.github.io vitalvu$ git status
+</span><span class='line'># On branch master
+</span><span class='line'># Your branch is ahead of 'octopress/master' by 5 commits.
+</span><span class='line'>#
+</span><span class='line'>nothing to commit (working directory clean)
+</span><span class='line'>csmith:scriptybooks.github.io vitalvu$ git checkout source
+</span><span class='line'>Switched to branch 'source'
+</span><span class='line'>Your branch and 'origin/master' have diverged,
+</span><span class='line'>and have 5 and 5 different commits each, respectively.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The messages about the branches diverging are nothing to worry about. They just show you&#8217;ve been busy with your blog.</p>
+
+<h3>What do you think?</h3>
+
+<p>Is Jekyll the right approach for writing interactive Web books? Please leave a comment. Oooops you can&#8217;t, because I didn&#8217;t
+enable the Disqus plugin (I can&#8217;t stand the ads that Disqus has been showing.) I&#8217;m thinking it&#8217;d be cool to have a comment widget that
+uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyone want to help? Arrggh, until I have it done, you still can&#8217;t comment. (Tweet me <a href="http://twitter.com/quartzmo">@quartzmo</a> instead.)</p>
 </div>
 
 
