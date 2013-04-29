@@ -24,6 +24,12 @@ single: true
       <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
     </section>
     {% endif %}
+    {% if site.discussion and page.comments == true %}
+    <section>
+      <h1>Comments</h1>
+      <div id="discussion-topic" aria-live="polite" data-topic="{{page.id}}"></div>
+    </section>
+    {% endif %}
     <ul class="pager">
       {% if page.previous.url %}
       <li class="previous"><a class="basic-alignment left"
