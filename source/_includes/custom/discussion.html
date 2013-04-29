@@ -9,7 +9,10 @@
 <script src="/javascripts/discussion/discussion.js"></script>
 <script type="text/javascript">
     $(function(){
-      $("#discussion-topic").discussion("https://discussion.firebaseio.com/sites/scriptyblog" + "{{page.id}}");
+      $("#discussion-topic").discussion({
+          url: "https://discussion.firebaseio.com/sites/scriptyblog/topics/",
+          topic: "{{page.id}}"
+      });
     });
 </script>
 {% endif %}
