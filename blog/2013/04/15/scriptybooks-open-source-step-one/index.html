@@ -46,6 +46,21 @@
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="ScriptyBlog" type="application/atom+xml">
   
+
+<link href="/stylesheets/discussion/discussion.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script src="/javascripts/discussion/underscore.js"></script>
+<script src="/javascripts/discussion/backbone.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-auth-client.js'></script>
+<script src="/javascripts/discussion/backbone-firebase.js"></script>
+<script src="/javascripts/discussion/discussion.js"></script>
+<script type="text/javascript">
+    $(function(){
+      $("#discussion-topic").discussion("https://discussion.firebaseio.com/sites/scriptyblog" + "/blog/2013/04/15/scriptybooks-open-source-step-one");
+    });
+</script>
+
+
   
 
 </head>
@@ -199,6 +214,12 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
 </div>
 
     
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="discussion-topic" aria-live="polite" data-topic="/blog/2013/04/15/scriptybooks-open-source-step-one"></div>
+    </section>
     
     <ul class="pager">
       
