@@ -4,7 +4,7 @@
   <title><![CDATA[ScriptyBlog]]></title>
   <link href="http://blog.scriptybooks.com/atom.xml" rel="self"/>
   <link href="http://blog.scriptybooks.com/"/>
-  <updated>2013-04-28T18:34:55-06:00</updated>
+  <updated>2013-04-28T23:26:14-06:00</updated>
   <id>http://blog.scriptybooks.com/</id>
   <author>
     <name><![CDATA[ScriptyBooks]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ScriptyBooks Open Source: Step One]]></title>
-    <link href="http://blog.scriptybooks.com/blog/2013/04/15/scriptybooks-open-source-step-one/"/>
+    <link href="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/"/>
     <updated>2013-04-15T13:13:00-06:00</updated>
-    <id>http://blog.scriptybooks.com/blog/2013/04/15/scriptybooks-open-source-step-one</id>
+    <id>http://blog.scriptybooks.com/scriptybooks-open-source-step-one</id>
     <content type="html"><![CDATA[<p>I&#8217;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
 right about sharing it as a Rails app. My original <em>bookserver</em> was a simple Node.js app and a command-line build tool, and that seemed like a
 better path for open source, although I didn&#8217;t get far down it before practical concerns on the business side led me to

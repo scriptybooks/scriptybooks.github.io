@@ -56,7 +56,10 @@
 <script src="/javascripts/discussion/discussion.js"></script>
 <script type="text/javascript">
     $(function(){
-      $("#discussion-topic").discussion("https://discussion.firebaseio.com/sites/scriptyblog" + "");
+      $("#discussion-topic").discussion({
+          url: "https://discussion.firebaseio.com/sites/scriptyblog/topics/",
+          topic: ""
+      });
     });
 </script>
 
@@ -112,7 +115,7 @@
       
   <header class="page-header">
     
-      <h1 class="entry-title"><a href="/blog/2013/04/15/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a></h1>
+      <h1 class="entry-title"><a href="/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a></h1>
     
     
       <p class="meta">
@@ -197,7 +200,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/blog/2013/04/15/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a>
+        <a href="/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a>
       </li>
     
   </ul>

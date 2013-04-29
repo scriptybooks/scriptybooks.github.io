@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.scriptybooks.com/blog/2013/04/15/scriptybooks-open-source-step-one">
+  <link rel="canonical" href="http://blog.scriptybooks.com/scriptybooks-open-source-step-one">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -56,7 +56,10 @@
 <script src="/javascripts/discussion/discussion.js"></script>
 <script type="text/javascript">
     $(function(){
-      $("#discussion-topic").discussion("https://discussion.firebaseio.com/sites/scriptyblog" + "/blog/2013/04/15/scriptybooks-open-source-step-one");
+      $("#discussion-topic").discussion({
+          url: "https://discussion.firebaseio.com/sites/scriptyblog/topics/",
+          topic: "/scriptybooks-open-source-step-one"
+      });
     });
 </script>
 
@@ -205,7 +208,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.scriptybooks.com/blog/2013/04/15/scriptybooks-open-source-step-one/" data-via="scriptybooks" data-counturl="http://blog.scriptybooks.com/blog/2013/04/15/scriptybooks-open-source-step-one/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" data-via="scriptybooks" data-counturl="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -218,7 +221,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     
     <section>
       <h1>Comments</h1>
-      <div id="discussion-topic" aria-live="polite" data-topic="/blog/2013/04/15/scriptybooks-open-source-step-one"></div>
+      <div id="discussion-topic" aria-live="polite" data-topic="/scriptybooks-open-source-step-one"></div>
     </section>
     
     <ul class="pager">
@@ -236,7 +239,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/blog/2013/04/15/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a>
+        <a href="/scriptybooks-open-source-step-one/">ScriptyBooks Open Source: Step One</a>
       </li>
     
   </ul>
