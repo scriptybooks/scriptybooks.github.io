@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ScriptyBooks open source: step one - ScriptyBlog</title>
+  <title>RailsConf 2013 keynotes: Rails 4 vs Ember.js - ScriptyBlog</title>
   <meta name="author" content="ScriptyBooks">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.scriptybooks.com/scriptybooks-open-source-step-one">
+  <link rel="canonical" href="http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -58,7 +58,7 @@
     $(function(){
       $("#discussion-topic").discussion({
           url: "https://discussion.firebaseio.com/sites/scriptyblog/topics/",
-          topic: "/scriptybooks-open-source-step-one"
+          topic: "/railsconf-2013-keynotes-rails-4-vs-ember-dot-js"
       });
     });
 </script>
@@ -113,7 +113,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">ScriptyBooks Open Source: Step One</h1>
+      <h1 class="entry-title">RailsConf 2013 Keynotes: Rails 4 vs Ember.js</h1>
     
     
       <p class="meta">
@@ -129,55 +129,60 @@
   
 
 
-<time datetime="2013-04-15T13:13:00-06:00" pubdate data-updated="true">Apr 15<span>th</span>, 2013</time>
+<time datetime="2013-04-30T20:12:00-06:00" pubdate data-updated="true">Apr 30<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I&#8217;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
-right about sharing it as a Rails app. My original <em>bookserver</em> was a simple Node.js app and a command-line build tool, and that seemed like a
-better path for open source, although I didn&#8217;t get far down it before practical concerns on the business side led me to
-switch to Ruby, Nokogiri, and Rails.</p>
+<div class="entry-content"><p><img src="/images/posts/railsconf_2013_wycats_jessabean.png"></p>
 
-<h3>Enter the Jekyll</h3>
+<p><em>Image source: https://twitter.com/jessabean/status/329299671728136193</em></p>
 
-<p><a href="http://octopress.org">Octopress</a> + <a href="http://jekyllrb.com/">Jekyll</a> is pretty cool stuff. Out of the box, the default blog doesn&#8217;t look like much&#8230;.
-but the cmd-line blogging tool is solid. It leverages git and GitHub to the max.
-<a href="http://octopress.org/docs/deploying/github/">Deploying</a> to <a href="http://pages.github.com/">GitHub Pages</a> is dialed in with its own <code>source</code> branch.
-Octopress even includes tasks for updating from the original project:
-Here&#8217;s how you <a href="http://octopress.org/docs/updating/">update the software</a>, all git based. I should have clued into this stuff a long time ago.</p>
+<h2>Recap</h2>
 
-<p>I think the git usage will impress you. Here&#8217;s a little taste of the experience:</p>
+<p>Here&#8217;s a quick recap of the RailsConf 2013 keynotes from David Heinemeier Hansson (DHH) and Yehuda Katz:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>csmith:scriptybooks.github.io vitalvu$ git status
-</span><span class='line'># On branch master
-</span><span class='line'># Your branch is ahead of 'octopress/master' by 5 commits.
-</span><span class='line'>#
-</span><span class='line'>nothing to commit (working directory clean)
-</span><span class='line'>csmith:scriptybooks.github.io vitalvu$ git checkout source
-</span><span class='line'>Switched to branch 'source'
-</span><span class='line'>Your branch and 'origin/master' have diverged,
-</span><span class='line'>and have 5 and 5 different commits each, respectively.</span></code></pre></td></tr></table></div></figure>
+<p>First, David explained Rails 4&#8217;s firm commitment to server-side programming and provided an overview of Russian-doll caching, turbolinks, JavaScript helpers, and other details. The content of his keynote
+was remarkably similar to his blog post of over a year before, <a href="http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui">How Basecamp Next got to be so damn fast without using much client-side UI</a>.</p>
 
+<p>Yehuda&#8217;s keynote was an energetic, well-researched rebuttal to David&#8217;s that included many memorable sound-bites, such as
+&#8220;2012: The Year Rubyists Wrote Off JS Libraries.&#8221; I&#8217;ll update this post with a link to it when it becomes available on ConFreaks, as it&#8217;s so worth watching.</p>
 
-<p>The messages about the branches diverging are nothing to worry about. They just show you&#8217;ve been busy with your blog.</p>
+<h2>Themes</h2>
 
-<h3>What do you think?</h3>
+<p>The two sought to differentiate their approaches to modern Web apps on three major themes, as I see it.</p>
 
-<p>Is Jekyll the right approach for writing interactive Web books? Please leave a comment. Oooops you can&#8217;t, because I didn&#8217;t
-enable the Disqus plugin (I can&#8217;t stand the ads that Disqus has been showing.) I&#8217;m thinking it&#8217;d be cool to have a comment widget that
-uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyone want to help? Arrggh, until I have it done, you still can&#8217;t comment. (Tweet me <a href="http://twitter.com/quartzmo">@quartzmo</a> instead.)</p>
+<p>The first theme, <strong>mental model</strong>, is simply where your mind lives when you program your application. Are you writing Rails for the server or
+JavaScript for the client? This is pretty much a matter of taste, but as you can imagine, in the heart of Rubyland the burden of proof was
+on Yehuda for this one. It was enough for David to simply state that &#8220;I like Ruby better.&#8221;</p>
+
+<p>The second theme is the <strong>organization</strong> of JavaScript&#8211;or the lack of it, as Yehuda would point out, blaming the &#8220;Sprinkles of JavaScript&#8221;
+mentality for much <em>ad hoc</em> JavaScript programming. Unfortunately, David has never revealed much about the substantial
+CoffeeScript portion of Basecamp, except to say that of the 10k or so lines of code, roughly a third is the
+Backbone-based calendar (a client-side app). Rails 4 will not provide any new facilities for organizing client-side code,
+as far as I know, which is a disappointment considering the innovations of the Rails Asset Pipeline.</p>
+
+<p>The third theme is the most technical and also by far the most interesting for me personally. This is the question of where to <strong>render HTML</strong>, on the server or the client? I thought the best part of David&#8217;s keynote was when he argued that the great strength of HTML is
+its orientation toward documents, and further, that many web applications are appropriately document-centric. He provided examples of how small
+user-specific variations in documents could be made on the client, allowing a single master representation to be cached for all users on the server.
+Yehuda, arguing for rendering to be done on the client from JSON delivered from the server, attempted to use David&#8217;s examples as evidence that significant JavaScript programming is still required, and urged the audience to &#8220;embrace JavaScript.&#8221;</p>
+
+<h2>My Conclusions</h2>
+
+<p>I enjoyed Yehuda&#8217;s keynote and agree with almost everything he says when he&#8217;s saying it (he&#8217;s such a great speaker.)</p>
+
+<p>But as I
+reflected afterward on his evidence for client-side rendering, I immediately felt that something was amiss. If a high-enough percentage of
+web content is exactly the same for all users with access to the web resource, then it really makes sense to do the rendering <em>once</em> on the server,
+cache the result, and save clients the trouble and time of rendering <em>all</em> of the content using JavaScript. And I wonder what that &#8220;high-enough&#8221; number really is? In the end, it may just be whatever you&#8217;re hoping to see first as your underpowered device loads the page over a slow connection.</p>
+
+<p>Yehuda&#8217;s approach has elegance on its side, while David&#8217;s is a much uglier hybrid. But the hybrid appears to have
+serious performance advantages. If you haven&#8217;t already, you must read about Twitter&#8217;s experience with and partial retreat from client-side rendering in the <a href="http://engineering.twitter.com/2012/05/improving-performance-on-twittercom.html">&#8220;time to first tweet&#8221;</a> post of May 29, 2012.</p>
+
+<p>As always, a one-size-fits-all, one-tool-for-every-job approach is likely to lead to trouble. So you need to ask yourself, how document-oriented is
+your application?</p>
 </div>
 
 
@@ -200,7 +205,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
   
 
 
-<time datetime="2013-04-15T13:13:00-06:00" pubdate data-updated="true">Apr 15<span>th</span>, 2013</time>
+<time datetime="2013-04-30T20:12:00-06:00" pubdate data-updated="true">Apr 30<span>th</span>, 2013</time>
       
 
 
@@ -208,7 +213,7 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" data-via="scriptybooks" data-counturl="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/" data-via="scriptybooks" data-counturl="http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -221,16 +226,16 @@ uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyon
     
     <section>
       <h1>Comments</h1>
-      <div id="discussion-topic" aria-live="polite" data-topic="/scriptybooks-open-source-step-one"></div>
+      <div id="discussion-topic" aria-live="polite" data-topic="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js"></div>
     </section>
     
     <ul class="pager">
       
-      <li><a href="/blog/archives">Blog Archives</a></li>
+      <li class="previous"><a class="basic-alignment left"
+        href="/scriptybooks-open-source-step-one/" title="Previous Post:
+        ScriptyBooks open source: step one">&laquo; ScriptyBooks open source: step one</a></li>
       
-      <li class="next"><a class="basic-alignment right" href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/"
-        title="Next Post: RailsConf 2013 keynotes: Rails 4 vs Ember.js">RailsConf 2013 keynotes: Rails 4 vs Ember.js
-        &raquo;</a></li>
+      <li><a href="/blog/archives">Blog Archives</a></li>
       
     </ul>
   </footer>

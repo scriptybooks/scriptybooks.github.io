@@ -4,7 +4,7 @@
   <title><![CDATA[ScriptyBlog]]></title>
   <link href="http://blog.scriptybooks.com/atom.xml" rel="self"/>
   <link href="http://blog.scriptybooks.com/"/>
-  <updated>2013-04-28T23:44:45-06:00</updated>
+  <updated>2013-04-30T23:01:12-06:00</updated>
   <id>http://blog.scriptybooks.com/</id>
   <author>
     <name><![CDATA[ScriptyBooks]]></name>
@@ -14,7 +14,62 @@
 
   
   <entry>
-    <title type="html"><![CDATA[ScriptyBooks Open Source: Step One]]></title>
+    <title type="html"><![CDATA[RailsConf 2013 keynotes: Rails 4 vs Ember.js]]></title>
+    <link href="http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/"/>
+    <updated>2013-04-30T20:12:00-06:00</updated>
+    <id>http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.scriptybooks.com/images/posts/railsconf_2013_wycats_jessabean.png"></p>
+
+<p><em>Image source: https://twitter.com/jessabean/status/329299671728136193</em></p>
+
+<h2>Recap</h2>
+
+<p>Here&#8217;s a quick recap of the RailsConf 2013 keynotes from David Heinemeier Hansson (DHH) and Yehuda Katz:</p>
+
+<p>First, David explained Rails 4&#8217;s firm commitment to server-side programming and provided an overview of Russian-doll caching, turbolinks, JavaScript helpers, and other details. The content of his keynote
+was remarkably similar to his blog post of over a year before, <a href="http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui">How Basecamp Next got to be so damn fast without using much client-side UI</a>.</p>
+
+<p>Yehuda&#8217;s keynote was an energetic, well-researched rebuttal to David&#8217;s that included many memorable sound-bites, such as
+&#8220;2012: The Year Rubyists Wrote Off JS Libraries.&#8221; I&#8217;ll update this post with a link to it when it becomes available on ConFreaks, as it&#8217;s so worth watching.</p>
+
+<h2>Themes</h2>
+
+<p>The two sought to differentiate their approaches to modern Web apps on three major themes, as I see it.</p>
+
+<p>The first theme, <strong>mental model</strong>, is simply where your mind lives when you program your application. Are you writing Rails for the server or
+JavaScript for the client? This is pretty much a matter of taste, but as you can imagine, in the heart of Rubyland the burden of proof was
+on Yehuda for this one. It was enough for David to simply state that &#8220;I like Ruby better.&#8221;</p>
+
+<p>The second theme is the <strong>organization</strong> of JavaScript&#8211;or the lack of it, as Yehuda would point out, blaming the &#8220;Sprinkles of JavaScript&#8221;
+mentality for much <em>ad hoc</em> JavaScript programming. Unfortunately, David has never revealed much about the substantial
+CoffeeScript portion of Basecamp, except to say that of the 10k or so lines of code, roughly a third is the
+Backbone-based calendar (a client-side app). Rails 4 will not provide any new facilities for organizing client-side code,
+as far as I know, which is a disappointment considering the innovations of the Rails Asset Pipeline.</p>
+
+<p>The third theme is the most technical and also by far the most interesting for me personally. This is the question of where to <strong>render HTML</strong>, on the server or the client? I thought the best part of David&#8217;s keynote was when he argued that the great strength of HTML is
+its orientation toward documents, and further, that many web applications are appropriately document-centric. He provided examples of how small
+user-specific variations in documents could be made on the client, allowing a single master representation to be cached for all users on the server.
+Yehuda, arguing for rendering to be done on the client from JSON delivered from the server, attempted to use David&#8217;s examples as evidence that significant JavaScript programming is still required, and urged the audience to &#8220;embrace JavaScript.&#8221;</p>
+
+<h2>My Conclusions</h2>
+
+<p>I enjoyed Yehuda&#8217;s keynote and agree with almost everything he says when he&#8217;s saying it (he&#8217;s such a great speaker.)</p>
+
+<p>But as I
+reflected afterward on his evidence for client-side rendering, I immediately felt that something was amiss. If a high-enough percentage of
+web content is exactly the same for all users with access to the web resource, then it really makes sense to do the rendering <em>once</em> on the server,
+cache the result, and save clients the trouble and time of rendering <em>all</em> of the content using JavaScript. And I wonder what that &#8220;high-enough&#8221; number really is? In the end, it may just be whatever you&#8217;re hoping to see first as your underpowered device loads the page over a slow connection.</p>
+
+<p>Yehuda&#8217;s approach has elegance on its side, while David&#8217;s is a much uglier hybrid. But the hybrid appears to have
+serious performance advantages. If you haven&#8217;t already, you must read about Twitter&#8217;s experience with and partial retreat from client-side rendering in the <a href="http://engineering.twitter.com/2012/05/improving-performance-on-twittercom.html">&#8220;time to first tweet&#8221;</a> post of May 29, 2012.</p>
+
+<p>As always, a one-size-fits-all, one-tool-for-every-job approach is likely to lead to trouble. So you need to ask yourself, how document-oriented is
+your application?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ScriptyBooks open source: step one]]></title>
     <link href="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/"/>
     <updated>2013-04-15T13:13:00-06:00</updated>
     <id>http://blog.scriptybooks.com/scriptybooks-open-source-step-one</id>
