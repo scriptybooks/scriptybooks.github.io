@@ -3,7 +3,8 @@ layout: post
 title: "ScriptyBooks open source: step one"
 date: 2013-04-15 13:13
 comments: true
-categories: 
+categories:
+author: Chris Smith (@quartzmo)
 ---
 
 I've been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
