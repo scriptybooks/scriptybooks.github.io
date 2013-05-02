@@ -1,0 +1,8 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+
+h1 { font-size: $baseFontSize * 2; } // ~32px
+h2 { font-size: $baseFontSize * 1.5; } // ~24px
+h3 { font-size: $baseFontSize * 1.33; } //
+h4 { font-size: $baseFontSize * 1.25; } // ~18px
