@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://blog.scriptybooks.com/scriptybooks-open-source-step-one/</loc>
+        <lastmod>2013-04-30T23:07:45-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/</loc>
+        <lastmod>2013-04-30T23:32:20-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.scriptybooks.com/blog/archives/</loc>
+        <lastmod>2013-04-30T23:32:20-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.scriptybooks.com/</loc>
+        <lastmod>2013-04-30T23:32:20-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.scriptybooks.com/robots.txt</loc>
+        <lastmod>2013-04-15T15:08:13-06:00</lastmod>
+    </url>
+</urlset>

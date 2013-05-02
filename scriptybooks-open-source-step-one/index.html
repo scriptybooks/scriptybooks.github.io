@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ScriptyBooks open source: step one - ScriptyBlog</title>
+  <meta name="author" content="ScriptyBooks">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.scriptybooks.com/scriptybooks-open-source-step-one">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .sharing, .meta, .pager {
+      margin: 20px 0px 20px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ScriptyBlog" type="application/atom+xml">
+  
+
+<link href="/stylesheets/discussion/discussion.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script src="/javascripts/discussion/underscore.js"></script>
+<script src="/javascripts/discussion/backbone.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-auth-client.js'></script>
+<script src="/javascripts/discussion/backbone-firebase.js"></script>
+<script src="/javascripts/discussion/discussion.js"></script>
+<script type="text/javascript">
+    $(function(){
+      $("#discussion-topic").discussion({
+          url: "https://discussion.firebaseio.com/sites/scriptyblog/topics/",
+          topic: "/scriptybooks-open-source-step-one"
+      });
+    });
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">ScriptyBlog</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:blog.scriptybooks.com" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">ScriptyBooks Open Source: Step One</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-15T13:13:00-06:00" pubdate data-updated="true">Apr 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
+right about sharing it as a Rails app. My original <em>bookserver</em> was a simple Node.js app and a command-line build tool, and that seemed like a
+better path for open source, although I didn&#8217;t get far down it before practical concerns on the business side led me to
+switch to Ruby, Nokogiri, and Rails.</p>
+
+<h3>Enter the Jekyll</h3>
+
+<p><a href="http://octopress.org">Octopress</a> + <a href="http://jekyllrb.com/">Jekyll</a> is pretty cool stuff. Out of the box, the default blog doesn&#8217;t look like much&#8230;.
+but the cmd-line blogging tool is solid. It leverages git and GitHub to the max.
+<a href="http://octopress.org/docs/deploying/github/">Deploying</a> to <a href="http://pages.github.com/">GitHub Pages</a> is dialed in with its own <code>source</code> branch.
+Octopress even includes tasks for updating from the original project:
+Here&#8217;s how you <a href="http://octopress.org/docs/updating/">update the software</a>, all git based. I should have clued into this stuff a long time ago.</p>
+
+<p>I think the git usage will impress you. Here&#8217;s a little taste of the experience:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>csmith:scriptybooks.github.io vitalvu$ git status
+</span><span class='line'># On branch master
+</span><span class='line'># Your branch is ahead of 'octopress/master' by 5 commits.
+</span><span class='line'>#
+</span><span class='line'>nothing to commit (working directory clean)
+</span><span class='line'>csmith:scriptybooks.github.io vitalvu$ git checkout source
+</span><span class='line'>Switched to branch 'source'
+</span><span class='line'>Your branch and 'origin/master' have diverged,
+</span><span class='line'>and have 5 and 5 different commits each, respectively.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The messages about the branches diverging are nothing to worry about. They just show you&#8217;ve been busy with your blog.</p>
+
+<h3>What do you think?</h3>
+
+<p>Is Jekyll the right approach for writing interactive Web books? Please leave a comment. Oooops you can&#8217;t, because I didn&#8217;t
+enable the Disqus plugin (I can&#8217;t stand the ads that Disqus has been showing.) I&#8217;m thinking it&#8217;d be cool to have a comment widget that
+uses <a href="http://www.firebase.com">Firebase</a>. What about that idea? Anyone want to help? Arrggh, until I have it done, you still can&#8217;t comment. (Tweet me <a href="http://twitter.com/quartzmo">@quartzmo</a> instead.)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Smith (@quartzmo)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-15T13:13:00-06:00" pubdate data-updated="true">Apr 15<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" data-via="scriptybooks" data-counturl="http://blog.scriptybooks.com/scriptybooks-open-source-step-one/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="discussion-topic" aria-live="polite" data-topic="/scriptybooks-open-source-step-one"></div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/"
+        title="Next Post: RailsConf 2013 keynotes: Rails 4 vs Ember.js">RailsConf 2013 keynotes: Rails 4 vs Ember.js
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js/">RailsConf 2013 keynotes: Rails 4 vs Ember.js</a>
+      </li>
+    
+      <li class="post">
+        <a href="/scriptybooks-open-source-step-one/">ScriptyBooks open source: step one</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - ScriptyBooks -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100601902); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100601902ns.gif" /></p></noscript>
+
+
+</body>
+</html>
