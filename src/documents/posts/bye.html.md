@@ -4,4 +4,4 @@ layout: post
 tags: ['outro','post']
 ```
 
-This is a goodbye **blog post**
+This is a longish **blog post**
