@@ -95,6 +95,9 @@ docpadConfig = {
 	# Plugins
 
 	plugins:
+    ghpages:
+      deployBranch: 'master'
+
 		downloader:
 			downloads: [
 				{
