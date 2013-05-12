@@ -38,9 +38,9 @@
     "docpad-plugin-marked": "2.x",
     "docpad-plugin-partials": "2.x",
     "docpad-plugin-related": "2.x",
-    "docpad-plugin-stylus": "2.x",
     "docpad-plugin-text": "2.x",
-    "docpad-plugin-sitemap": "~0.2.0"
+    "docpad-plugin-sitemap": "~0.2.0",
+    "docpad-plugin-highlightjs": "~2.1.6"
   },
   "devDependencies": {
     "docpad-plugin-livereload": "2.x"

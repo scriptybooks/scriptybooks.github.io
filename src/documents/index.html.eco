@@ -1,0 +1,19 @@
+---
+layout: 'default'
+title: 'Home'
+---
+
+
+<% for document, i in @getCollection('posts').toJSON() : %>
+
+  <% break if i > 2 %>
+
+  <article id="post" class="post">
+    <h1><a href='<%= document.url %>'><%= document.title %></a></h1>
+    <div class="post-date"><%= document.date.toLocaleDateString() %></div>
+    <div class="post-content">
+      <%- document.contentRenderedWithoutLayouts %>
+    </div>
+  </article>
+  <hr>
+<% end %>

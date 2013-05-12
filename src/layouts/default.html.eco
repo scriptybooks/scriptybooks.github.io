@@ -41,7 +41,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="/">Welcome</a>
+				<a class="brand" href="/">ScriptyBlog</a>
 				<ul class="nav">
 					<% for document in @getCollection('pages').toJSON(): %>
 						<li typeof="sioc:Page" about="<%= document.url %>" class="<%= 'active'  if @document.url is document.url %>">
@@ -53,15 +53,39 @@
 		</div>
 	</div>
 	<div class="container">
+  <div class="row-fluid">
+    <div class="span9">
 		<section id="content" class="content">
 			<%- @content %>
 		</section>
+      </div>
+    <aside class="sidebar-nav span3">
+
+        <section class="well">
+      <ul id="recent_posts" class="nav nav-list">
+        <li class="nav-header">Posts</li>
+
+        <% for document in @getCollection('posts').toJSON(): %>
+          <li class="post">
+            <a href="<%= document.url %>"><%= document.title %></a>
+          </li>
+       	<% end %>
+      </ul>
+    </section>
+
+
+
+
+
+
+    </aside>
+   </div>
+    <div class="row-fluid">
+
 		<footer>
-			<p>&copy; Company <%- (new Date()).getFullYear() %></p>
-			<p style="float:right;">
-				This website was last updated at <%= @site.date.toISOString() %>
-			</p>
+			<p>&copy; ScriptyBooks LLC 2013</p>
 		</footer>
+   </div>
 	</div><!-- /container -->
 
 	<!-- Scripts -->
