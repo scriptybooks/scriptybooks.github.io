@@ -6,6 +6,8 @@ date: 2013-05-12
 author: Chris Smith (@quartzmo)
 ```
 
+![docpad home page](/images/docpad.jpg)
+
 After just three posts on [Octopress](http://octopress.org/), I decided to migrate [ScriptyBlog](/) to [DocPad](http://docpad.org/). Why? I'm trying to find the best platform for authoring interactive online technical books, for the next version of [ScriptyBooks](http://www.scriptybooks.com).
 
 Jekyll, the slightly more general project upon which Octopress is based, is a mature static site generation tool that has had a recent [1.0 release](http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/) and is again enjoying active development. However, both [Jekyll](http://jekyllrb.com/) and [Middleman](http://middlemanapp.com) are Ruby-based, while DocPad runs on Node.js and is written in CoffeeScript, Backbone.js, and Eco templates. Just like my own interactive [Backbone.js + CoffeeScript](http://www.scriptybooks.com/books/backbone-coffeescript) book!
