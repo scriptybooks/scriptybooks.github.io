@@ -33,4 +33,4 @@ It took me a few hours to do the migration. Here are my notes:
 1. Figure out that I forgot to copy [the CNAME file](https://help.github.com/articles/my-custom-domain-isn-t-working) from the Octopress blog to the DocPad `src` directory. Deploy again.
 1. Success!
 
-If you have any DocPad expertise to share, give me a shout on Twitter ([@quartzmo](http://twitter.com/quartzmo)).
+If you have any DocPad expertise to share, give me a shout on Twitter ([@quartzmo](http://twitter.com/quartzmo)). I'd love to connect with some people using it.
