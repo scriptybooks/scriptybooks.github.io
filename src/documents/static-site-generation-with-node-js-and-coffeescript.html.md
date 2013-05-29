@@ -2,7 +2,7 @@
 title: Static Site Generation with Node.js and CoffeeScript
 layout: post
 tags: ['post']
-date: 2013-05-28
+date: 2013-05-29
 author: Chris Smith (@quartzmo)
 ```
 *This article was originally published on [coffeescriptlove.com](http://www.coffeescriptlove.com/2013/05/static-site-generation-with-nodejs-and.html).*
@@ -17,8 +17,10 @@ Say hello to [DocPad](http://docpad.org/).
 
 DocPad embraces CoffeeScript in a big way. 
 
-For starters, let's take a look at a typical [DocPad configuration file](https://github.com/docpad/kitchensink.docpad/blob/master/docpad.coffee). Whoa! Not only is it in CoffeeScript, it even contains functions. In my opinion, as long as you use this feature judiciously, the ability to house short, deliciously-readable CoffeeScript functions in your configuration is really nice. For an interesting example of configuration, check out the instructions for using [DocPad, GitHub and Prose as a Wiki](https://gist.github.com/balupton/5519403). (Aside: After I've published this post, I will employ [Prose](http://prose.io) and GitHub in this very way to add a link to my post to the official DocPad site.)
+For starters, let's take a look at a typical [DocPad configuration file](https://github.com/docpad/kitchensink.docpad/blob/master/docpad.coffee). Whoa! Not only is it in CoffeeScript, it even contains functions! Used judiciously, the ability to include short, readable CoffeeScript functions in your configuration is quite handy. For an interesting example, check out the instructions for using [DocPad, GitHub and Prose as a Wiki](https://gist.github.com/balupton/5519403). (Aside: After publishing this post, I will use [Prose](http://prose.io) and GitHub as described to add a link to my post to the official DocPad [showcase](http://docpad.org/docs/showcase).)
 
-The [DocPad core](https://github.com/bevry/docpad) and almost all of its [community plugins](https://github.com/docpad) are written in CoffeeScript, but that's not all. Although DocPad supports [a long list of renderers](http://docpad.org/docs/plugins#renderers) that includes Handlebars and Jade in addition to PHP and Ruby, the project's [skeletons](http://docpad.org/docs/skeletons) have a strong preference for [Eco (Embedded CoffeeScript)](https://github.com/sstephenson/eco) templates. For an example of a typical page, check out [getting-started.html.eco](https://github.com/docpad/kitchensink.docpad/blob/master/src/documents/pages/getting-started.html.eco).
+The [DocPad core](https://github.com/bevry/docpad) and almost all of its [community plugins](https://github.com/docpad) are written in CoffeeScript, but that's not all. Although DocPad supports [a long list of renderers](http://docpad.org/docs/plugins#renderers) that includes Handlebars and Jade in addition to PHP and Ruby, the project's [skeletons](http://docpad.org/docs/skeletons) have a strong preference for [Eco (Embedded CoffeeScript)](https://github.com/sstephenson/eco) templates. For an example of a typical Eco template, check out [getting-started.html.eco](https://github.com/docpad/kitchensink.docpad/blob/master/src/documents/pages/getting-started.html.eco).
 
 If you enjoy CoffeeScript and Eco (it also uses Backbone.js), I encourage you to jump in and give DocPad a try. I have posted [my notes](http://blog.scriptybooks.com/from-jekyll-octopress-to-docpad/) about porting [blog.scriptybooks.com](http://blog.scriptybooks.com) from Jekyll to DocPad, in case they might be of use.
+
+Finally, no discussion of CoffeeScript and static site generators is complete without mentioning Jeremy Ashkenas' small but delightful [Journo](https://github.com/jashkenas/journo). In just a single file of code-within-documentation [Literate CoffeeScript](http://www.coffeescriptlove.com/2013/02/literate-coffeescript.html), Journo provides a everything you need for a minimalist tool, including deploys via rsync.
