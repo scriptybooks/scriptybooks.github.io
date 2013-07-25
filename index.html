@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Home | ScriptyBlog</title>
+	<meta name="description" content="The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning." />
+	<meta name="keywords" content="Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial" />
+	<meta name="author" content="ScriptyBooks" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta http-equiv="X-Powered-By" content="DocPad v6.38.0"/>
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+    <link rel="shortcut icon" href="/icons/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="/icons/apple-touch-icon.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/idea.css" />
+</head>
+<body>
+	<!-- Markup -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/">ScriptyBlog</a>
+				<ul class="nav" style="margin-left: 40px;">
+          <li><a class="brand" href="http://www.scriptybooks.com">ScriptyBooks</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+  <div class="row-fluid">
+    <div class="span9">
+		<section id="content" class="content">
+			
+
+  
+
+  <article id="post" class="post">
+    <h1><a href='/landing-page-with-yeoman-bower-grunt-and-node'>Landing Page with Yeoman, Bower, Grunt, and a Node API Server</a></h1>
+    <div class="post-date">Wednesday, June 19, 2013</div>
+    <div class="post-content">
+      <p>After building some static sites with <a href="http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase/">Jekyll</a> and then <a href="http://blog.scriptybooks.com/static-site-generation-with-node-js-and-coffeescript/">DocPad</a>, I decided that it might make sense to leverage <a href="http://gruntjs.com/">Grunt</a> for the multitude of build steps such as asset minification and CoffeeScript compilation, rather than tool-specific plugins. This was confirmed by briefly working on my own DocPad plugin for downloading Web components, an effort that led me back to <a href="http://bower.io/">Bower</a>, which despite some <a href="https://twitter.com/maccaw/status/335537034309533697">flaws</a> has been growing in popularity as a package manager for the Web.</p>
+<p>Well, if you want to quickly scaffold a Grunt and Bower project, it turns that the new <a href="http://yeoman.io/">Yeoman</a> (1.0) makes it very easy to do. To get started, I used <code>yo webapp</code> to redo a simple <a href="http://www.angularjsbook.com/">landing page for an AngularJS book</a> that I&#39;m considering writing. This was easy, although the <a href="https://github.com/quartzmo/angularjsbook.com/blob/master/Gruntfile.js">Grunt build</a> produced by the <a href="https://github.com/yeoman/generator-webapp">Yeoman webapp generator</a> contains far too much testing  (<a href="http://visionmedia.github.io/mocha/">Mocha</a>, <a href="http://phantomjs.org/">PhantomJS</a>) for such a simple page.</p>
+<p>Taking time out to reflect on the slowness of the build, I tried out two non-Grunt Node site generators: <a href="https://twitter.com/jaredhanson">Jared Hanson</a>&#39;s <a href="https://github.com/jaredhanson/kerouac/">Kerouac</a> and <a href="https://twitter.com/jescalan">Jeff Escalante</a>&#39;s <a href="http://roots.cx/">Roots</a>. Both are lean and blazing fast, but do not leverage a larger ecosystem of plugins or components. However, I will almost certainly come back to both of them.</p>
+<p>Continuing with Yeoman, I decided to build a somewhat more ambitious single-page site, with a small <a href="http://backbonejs.org/">Backbone.js</a> widget for signups backed by a light Node JSON API server. (I coded and deployed the server separately, although in the future I hope to mostly generate the server code from the front-end project.) Here is the finished result: The <a href="http://www.quartzmo.com/tacoconfslc/">TacoConf Salt Lake City</a> landing page.</p>
+<p><img src="/images/taco_conf_who_is_going.jpg" alt="tacoconfslc landing page"></p>
+<p>Things went smoothly at first. Adding Backbone using Bower was very easy, although the Underscore dependency was <a href="https://github.com/bower/bower/issues/172">not handled automatically</a>. (This made me <a href="http://www.coffeescriptlove.com/2013/06/coffeescript-in-chrome-devtools.html">think about using Browserify instead</a> for JavaScript components.) But things got difficult when I needed different server host names for production and development. Yeoman&#39;s <a href="https://github.com/yeoman/grunt-usemin">grunt-usemin</a> plugin felt extremely limiting. I cobbled together a solution to the problem with <a href="https://github.com/outaTiME/grunt-config">grunt-config</a> and <a href="https://github.com/outaTiME/grunt-replace">grunt-replace</a>, but it made me seriously miss the power of a template-based asset pipeline such as the one provided by DocPad.</p>
+<p>One of the better ideas I picked up from Yeoman is using <a href="https://github.com/yeoman/yeoman/wiki/Deployment">git subtree for deployment</a> to GitHub Pages. On Mac/OS X, you currently need to re-install git with homebrew to get subtree, but it&#39;s worth it. </p>
+<p>Next in my lineup for static site generation with Grunt: <a href="https://github.com/assemble/assemble">Assemble</a>.</p>
+
+    </div>
+  </article>
+  <hr>
+
+
+  
+
+  <article id="post" class="post">
+    <h1><a href='/static-site-generation-with-node-js-and-coffeescript'>Static Site Generation with Node.js and CoffeeScript</a></h1>
+    <div class="post-date">Tuesday, May 28, 2013</div>
+    <div class="post-content">
+      <p><em>This article was originally published on <a href="http://www.coffeescriptlove.com/2013/05/static-site-generation-with-nodejs-and.html">coffeescriptlove.com</a>.</em></p>
+<p>As I discussed in <a href="http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase/">&quot;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&quot;</a>, static sites built using powerful Ruby-based tools such as <a href="https://github.com/mojombo/jekyll">Jekyll</a> and <a href="https://github.com/middleman/middleman">Middleman</a> are surging in popularity based on their benefits: low hosting costs, speed, stability, and security. Jekyll has powered <a href="http://kylerush.net/blog/meet-the-obama-campaigns-250-million-fundraising-platform/">the Obama campaign&#39;s $250 million fundraising platform</a> as well as a <a href="http://developmentseed.org/blog/new-healthcare-gov-is-open-and-cms-free/">new version of healthcare.gov</a>. Several months ago GitHub Co-Founder and CEO Tom Preston-Werner <a href="https://github.com/mojombo/jekyll/issues/578#issuecomment-11414645">renewed his commitment to Jekyll</a>, writing, &quot;Sorry for not keeping this thing moving faster. 2013 is gonna kick ass. Wake up, go to war.&quot;</p>
+<p>So, this certainly sounds like good news for rubyists. But is there a tool for creating static sites using Node.js and CoffeeScript?</p>
+<p>Say hello to <a href="http://docpad.org/">DocPad</a>.</p>
+<p><img src="/images/docpad-benefits.jpg" alt="docpad home page"></p>
+<p>DocPad embraces CoffeeScript in a big way. </p>
+<p>For starters, let&#39;s take a look at a typical <a href="https://github.com/docpad/kitchensink.docpad/blob/master/docpad.coffee">DocPad configuration file</a>. Whoa! Not only is it in CoffeeScript, it even contains functions! Used judiciously, the ability to include short, readable CoffeeScript functions in your configuration is quite handy. For an interesting example, check out the instructions for using <a href="https://gist.github.com/balupton/5519403">DocPad, GitHub and Prose as a Wiki</a>. (Aside: After publishing this post, I will use <a href="http://prose.io">Prose</a> and GitHub as described to add a link to my post to the official DocPad <a href="http://docpad.org/docs/showcase">showcase</a>.)</p>
+<p>The <a href="https://github.com/bevry/docpad">DocPad core</a> and almost all of its <a href="https://github.com/docpad">community plugins</a> are written in CoffeeScript, but that&#39;s not all. Although DocPad supports <a href="http://docpad.org/docs/plugins#renderers">a long list of renderers</a> that includes Handlebars and Jade in addition to PHP and Ruby, the project&#39;s <a href="http://docpad.org/docs/skeletons">skeletons</a> have a strong preference for <a href="https://github.com/sstephenson/eco">Eco (Embedded CoffeeScript)</a> templates. For an example of a typical Eco template, check out <a href="https://github.com/docpad/kitchensink.docpad/blob/master/src/documents/pages/getting-started.html.eco">getting-started.html.eco</a>.</p>
+<p>If you enjoy CoffeeScript and Eco (it also uses Backbone.js), I encourage you to jump in and give DocPad a try. I have posted <a href="http://blog.scriptybooks.com/from-jekyll-octopress-to-docpad/">my notes</a> about porting <a href="http://blog.scriptybooks.com">blog.scriptybooks.com</a> from Jekyll to DocPad, in case they might be of use.</p>
+<p>Finally, no discussion of CoffeeScript and static site generators is complete without mentioning Jeremy Ashkenas&#39; small but delightful <a href="https://github.com/jashkenas/journo">Journo</a>. In just a single file of code-within-documentation <a href="http://www.coffeescriptlove.com/2013/02/literate-coffeescript.html">Literate CoffeeScript</a>, Journo provides a everything you need for a minimalist tool, including deploys via rsync.</p>
+
+    </div>
+  </article>
+  <hr>
+
+
+  
+
+  <article id="post" class="post">
+    <h1><a href='/from-jekyll-octopress-to-docpad'>From Jekyll/Octopress to DocPad</a></h1>
+    <div class="post-date">Saturday, May 11, 2013</div>
+    <div class="post-content">
+      <p><img src="/images/docpad.jpg" alt="docpad home page"></p>
+<p>After just three posts on <a href="http://octopress.org/">Octopress</a>, I decided to migrate <a href="/">ScriptyBlog</a> to <a href="http://docpad.org/">DocPad</a>. Why? I&#39;m trying to find the best platform for authoring interactive online technical books, for the next version of <a href="http://www.scriptybooks.com">ScriptyBooks</a>.</p>
+<p>Jekyll, the slightly more general project upon which Octopress is based, is a mature static site generation tool that has had a recent <a href="http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/">1.0 release</a> and is again enjoying active development. However, both <a href="http://jekyllrb.com/">Jekyll</a> and <a href="http://middlemanapp.com">Middleman</a> are Ruby-based, while DocPad runs on Node.js and is written in CoffeeScript, Backbone.js, and Eco templates. Just like my own interactive <a href="http://www.scriptybooks.com/books/backbone-coffeescript">Backbone.js + CoffeeScript</a> book!</p>
+<p>It took me a few hours to do the migration. Here are my notes:</p>
+<ol>
+<li>Update Node.js and npm. This is easy these days with the official installer.</li>
+<li>Follow the install instructions. Node <a href="http://substack.net/many_things">tiny modules</a> are for real. You may find it delightful, or alarming, to watch the npm install of DocPad.</li>
+<li>I reacted with shock and shut down my network connection when I realized the <code>docpad run</code> script was reporting back to the mother ship. After looking into the source code and thinking about it a bit, I decided this was okay.</li>
+<li>Follow the Quick Start instructions for a bare install. So far, so good.</li>
+<li>In a new directory, create a new project using an existing skeleton. After looking at the list of plugins used in several skeletons, I went with Twitter Bootstrap.</li>
+<li>Copy over a post source file from the Octopress project. If post doesn&#39;t show up in the list, it may be because you omitted the &#39;post&#39; tag that the DocPad example posts include. The &#39;post&#39; tag is used in a query and is required.</li>
+<li>Encounter the EMFILE &#39;too many open files&#39; error. Waste time googling and tinkering before finally finding the correct solution in the <a href="http://docpad.org/docs/troubleshoot">DocPad troubleshoot page</a>. Renew my vow to always RTFM.</li>
+<li>Since file watching on OS X doesn&#39;t seem to be working very well, follow troubleshoot page solution for switching to &#39;watchFile&#39;. The result is noticeably better though still not perfect. The <a href="https://github.com/docpad/docpad-plugin-livereload">livereload</a> plugin works well for me.</li>
+<li>Install the Highlight.js plugin for code highlighting. Plugin management with npm is awesome!</li>
+<li>Convert Jekyll/Octopress image helper to markdown.</li>
+<li>Customize Bootstrap. Replace <code>style.css.styl</code> with <code>style.css.less</code> and uninstall stylus plugin. Stylus may be cool, but on a Bootstrap project I think it makes sense to stick with Less.</li>
+<li>Find Ben Delarre&#39;s helpful post on <a href="http://delarre.net/posts/creating-the-index-page.html">creating an index page</a> and use it to make something like the Octopress index page. So far so good with CoffeeScript and Eco!</li>
+<li>Run <code>docpad generate --env static</code> and compare output against Octopress. It&#39;s different of course, but looks good.</li>
+<li>Waste time trying to figure out how to push <code>out</code> directory from master as the top-level directory on GitHub. It turns out the ghpages plugin already takes care of this.</li>
+<li>Fiddle with git to restore the blog source to the <code>master</code> branch. (Octopress uses a <code>source</code> branch.)</li>
+<li>Deploy using the ghpages plugin with <code>docpad deploy-ghpages</code>. See the glorious site live for a minute or so. Then see a GitHub 404 page.</li>
+<li>Figure out that I forgot to copy <a href="https://help.github.com/articles/my-custom-domain-isn-t-working">the CNAME file</a> from the Octopress blog to the DocPad <code>src</code> directory. Deploy again.</li>
+<li>Success!</li>
+</ol>
+<p>If you have any DocPad expertise to share, give me a shout on Twitter (<a href="http://twitter.com/quartzmo">@quartzmo</a>). I&#39;d love to connect with some people using it.</p>
+
+    </div>
+  </article>
+  <hr>
+
+
+  
+		</section>
+      </div>
+    <aside class="sidebar-nav span3">
+
+        <section class="well">
+      <ul id="recent_posts" class="nav nav-list">
+        <li class="nav-header">Posts</li>
+
+        
+          <li class="post">
+            <a href="/landing-page-with-yeoman-bower-grunt-and-node">Landing Page with Yeoman, Bower, Grunt, and a Node API Server</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/static-site-generation-with-node-js-and-coffeescript">Static Site Generation with Node.js and CoffeeScript</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/from-jekyll-octopress-to-docpad">From Jekyll/Octopress to DocPad</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/interactive-static-sites-with-jekyll-backbone-js-and-firebase">Interactive Static Sites With Jekyll, Backbone.js, and Firebase</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js">RailsConf 2013 Keynotes: Rails 4 vs Ember.js</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/scriptybooks-open-source-step-one">ScriptyBooks open source, step one</a>
+          </li>
+       	
+      </ul>
+    </section>
+
+    </aside>
+   </div>
+    <div class="row-fluid">
+
+		<footer>
+			<p>Site &copy; ScriptyBooks LLC 2013, post content &copy; Chris Smith 2013</p>
+		</footer>
+   </div>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+
+  <script src="//static.getclicky.com/js" type="text/javascript"></script>
+  <script type="text/javascript">try{ clicky.init(100601902); }catch(e){}</script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100601902ns.gif" /></p></noscript>
+
+</body>
+</html>

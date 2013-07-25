@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Landing Page with Yeoman, Bower, Grunt, and a Node API Server | ScriptyBlog</title>
+	<meta name="description" content="The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning." />
+	<meta name="keywords" content="Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial" />
+	<meta name="author" content="ScriptyBooks" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta http-equiv="X-Powered-By" content="DocPad v6.38.0"/>
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+    <link rel="shortcut icon" href="/icons/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="/icons/apple-touch-icon.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/idea.css" />
+</head>
+<body>
+	<!-- Markup -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/">ScriptyBlog</a>
+				<ul class="nav" style="margin-left: 40px;">
+          <li><a class="brand" href="http://www.scriptybooks.com">ScriptyBooks</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+  <div class="row-fluid">
+    <div class="span9">
+		<section id="content" class="content">
+			<article id="post" class="post">
+	<h1>Landing Page with Yeoman, Bower, Grunt, and a Node API Server</h1>
+  <div class="post-date">Wednesday, June 19, 2013</div>
+	<div class="post-content"><p>After building some static sites with <a href="http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase/">Jekyll</a> and then <a href="http://blog.scriptybooks.com/static-site-generation-with-node-js-and-coffeescript/">DocPad</a>, I decided that it might make sense to leverage <a href="http://gruntjs.com/">Grunt</a> for the multitude of build steps such as asset minification and CoffeeScript compilation, rather than tool-specific plugins. This was confirmed by briefly working on my own DocPad plugin for downloading Web components, an effort that led me back to <a href="http://bower.io/">Bower</a>, which despite some <a href="https://twitter.com/maccaw/status/335537034309533697">flaws</a> has been growing in popularity as a package manager for the Web.</p>
+<p>Well, if you want to quickly scaffold a Grunt and Bower project, it turns that the new <a href="http://yeoman.io/">Yeoman</a> (1.0) makes it very easy to do. To get started, I used <code>yo webapp</code> to redo a simple <a href="http://www.angularjsbook.com/">landing page for an AngularJS book</a> that I&#39;m considering writing. This was easy, although the <a href="https://github.com/quartzmo/angularjsbook.com/blob/master/Gruntfile.js">Grunt build</a> produced by the <a href="https://github.com/yeoman/generator-webapp">Yeoman webapp generator</a> contains far too much testing  (<a href="http://visionmedia.github.io/mocha/">Mocha</a>, <a href="http://phantomjs.org/">PhantomJS</a>) for such a simple page.</p>
+<p>Taking time out to reflect on the slowness of the build, I tried out two non-Grunt Node site generators: <a href="https://twitter.com/jaredhanson">Jared Hanson</a>&#39;s <a href="https://github.com/jaredhanson/kerouac/">Kerouac</a> and <a href="https://twitter.com/jescalan">Jeff Escalante</a>&#39;s <a href="http://roots.cx/">Roots</a>. Both are lean and blazing fast, but do not leverage a larger ecosystem of plugins or components. However, I will almost certainly come back to both of them.</p>
+<p>Continuing with Yeoman, I decided to build a somewhat more ambitious single-page site, with a small <a href="http://backbonejs.org/">Backbone.js</a> widget for signups backed by a light Node JSON API server. (I coded and deployed the server separately, although in the future I hope to mostly generate the server code from the front-end project.) Here is the finished result: The <a href="http://www.quartzmo.com/tacoconfslc/">TacoConf Salt Lake City</a> landing page.</p>
+<p><img src="/images/taco_conf_who_is_going.jpg" alt="tacoconfslc landing page"></p>
+<p>Things went smoothly at first. Adding Backbone using Bower was very easy, although the Underscore dependency was <a href="https://github.com/bower/bower/issues/172">not handled automatically</a>. (This made me <a href="http://www.coffeescriptlove.com/2013/06/coffeescript-in-chrome-devtools.html">think about using Browserify instead</a> for JavaScript components.) But things got difficult when I needed different server host names for production and development. Yeoman&#39;s <a href="https://github.com/yeoman/grunt-usemin">grunt-usemin</a> plugin felt extremely limiting. I cobbled together a solution to the problem with <a href="https://github.com/outaTiME/grunt-config">grunt-config</a> and <a href="https://github.com/outaTiME/grunt-replace">grunt-replace</a>, but it made me seriously miss the power of a template-based asset pipeline such as the one provided by DocPad.</p>
+<p>One of the better ideas I picked up from Yeoman is using <a href="https://github.com/yeoman/yeoman/wiki/Deployment">git subtree for deployment</a> to GitHub Pages. On Mac/OS X, you currently need to re-install git with homebrew to get subtree, but it&#39;s worth it. </p>
+<p>Next in my lineup for static site generation with Grunt: <a href="https://github.com/assemble/assemble">Assemble</a>.</p>
+</div>
+  <p>By Chris Smith (@quartzmo)</p>
+</article>
+		</section>
+      </div>
+    <aside class="sidebar-nav span3">
+
+        <section class="well">
+      <ul id="recent_posts" class="nav nav-list">
+        <li class="nav-header">Posts</li>
+
+        
+          <li class="post">
+            <a href="/landing-page-with-yeoman-bower-grunt-and-node">Landing Page with Yeoman, Bower, Grunt, and a Node API Server</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/static-site-generation-with-node-js-and-coffeescript">Static Site Generation with Node.js and CoffeeScript</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/from-jekyll-octopress-to-docpad">From Jekyll/Octopress to DocPad</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/interactive-static-sites-with-jekyll-backbone-js-and-firebase">Interactive Static Sites With Jekyll, Backbone.js, and Firebase</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js">RailsConf 2013 Keynotes: Rails 4 vs Ember.js</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/scriptybooks-open-source-step-one">ScriptyBooks open source, step one</a>
+          </li>
+       	
+      </ul>
+    </section>
+
+    </aside>
+   </div>
+    <div class="row-fluid">
+
+		<footer>
+			<p>Site &copy; ScriptyBooks LLC 2013, post content &copy; Chris Smith 2013</p>
+		</footer>
+   </div>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+
+  <script src="//static.getclicky.com/js" type="text/javascript"></script>
+  <script type="text/javascript">try{ clicky.init(100601902); }catch(e){}</script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100601902ns.gif" /></p></noscript>
+
+</body>
+</html>

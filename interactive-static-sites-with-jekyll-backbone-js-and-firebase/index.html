@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<!-- Our site title and description -->
+	<title>Interactive Static Sites With Jekyll, Backbone.js, and Firebase | ScriptyBlog</title>
+	<meta name="description" content="The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning." />
+	<meta name="keywords" content="Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial" />
+	<meta name="author" content="ScriptyBooks" />
+
+	<!-- Output DocPad produced meta elements -->
+	<meta http-equiv="X-Powered-By" content="DocPad v6.38.0"/>
+
+	<!-- Mobile viewport optimized: h5bp.com/viewport -->
+	<meta name="viewport" content="width=device-width" />
+
+	<!-- Icons -->
+    <link rel="shortcut icon" href="/icons/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="/icons/apple-touch-icon.png">
+
+	<!-- Shims: IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script async src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link  rel="stylesheet" href="/styles/twitter-bootstrap.css" /><link  rel="stylesheet" href="/styles/style.css" /><link  rel="stylesheet" href="/vendor/highlightjs/idea.css" />
+</head>
+<body>
+	<!-- Markup -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/">ScriptyBlog</a>
+				<ul class="nav" style="margin-left: 40px;">
+          <li><a class="brand" href="http://www.scriptybooks.com">ScriptyBooks</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+  <div class="row-fluid">
+    <div class="span9">
+		<section id="content" class="content">
+			<article id="post" class="post">
+	<h1>Interactive Static Sites With Jekyll, Backbone.js, and Firebase</h1>
+  <div class="post-date">Thursday, May 02, 2013</div>
+	<div class="post-content"><p><em>Note: This post was adapted from a <a href="http://www.quartzmo.com/presentations/backbone-firebase-jekyll/">slide presentation on quartzmo.com</a>. That&#39;s why it&#39;s a bit heavy on bullet points.</em></p>
+<p>The term &quot;interactive static site&quot; appears to be an oxymoron. In fact, they are all over the Web and have been for years.
+What&#39;s relatively new are developer-oriented site generation tools such as Jekyll; JavaScript MVC frameworks such as Backbone.js, Ember.js, and AngularJS; and Backend as a Service (BaaS) platforms such as Firebase and Parse.</p>
+<h2>Why static sites?</h2>
+<p>Static web sites are extremely stable, secure, economical, and fast. They can be great for SEO and analytics, and work best when the <em>primary</em> content is infrequently changed and document-oriented.
+This is true of most personal blogs, but also of many large sites, possibly even much e-commerce.
+A <a href="http://developmentseed.org/blog/new-healthcare-gov-is-open-and-cms-free/">new version of healthcare.gov</a> is slated to
+be a massive static site, with content to be updated by non-technical users via <a href="http://prose.io">Prose</a>.</p>
+<p>Indeed, the page you are reading was created and deployed with <a href="https://github.com/imathis/octopress">Octopress</a>, a blog-specific wrapper for the slightly more generic <a href="https://github.com/mojombo/jekyll">Jekyll</a> project. Jekyll is complex software, based on Ruby, Rake, and Git. <a href="https://github.com/middleman/middleman">Middleman</a> may be even more complex than Jekyll, and reminds me of a command-line version of Rails. These are the heavyweight, mature solutions. For learning the concepts, check out something much simpler: Jeremy Ashkenas&#39; delightfully readable <a href="https://github.com/jashkenas/journo">Journo</a>, a single-file, Node-based tool that deploys via rsync.</p>
+<h2>The problem: Some interactivity</h2>
+<p>We are talking about <a href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js">Sprinkles of JavaScript</a>, not RIA: Most content is navigated through good old fashioned full-page reloads, but engaging the user
+requires scattered elements of interactive behavior and dynamic content.</p>
+<h2>The current solution: Third-party widgets and services</h2>
+<p>The ultimate example of a cross-site-loaded, service-backed widget may be <a href="http://disqus.com">Disqus</a>, which is so popular for static blogs that it is a default in Octopress. On product and marketing sites, no doubt you have seen countless feedback and survey widgets. <a href="https://www.uservoice.com">UserVoice</a> is one example.</p>
+<h3>Pros - Third-party service</h3>
+<ul>
+<li>Easy to integrate</li>
+<li>Mature, complete, and ready</li>
+</ul>
+<h3>Cons - Third-party service</h3>
+<ul>
+<li>Third-party branding</li>
+<li>Difficult or impossible to customize</li>
+<li>Vendor lock-in</li>
+<li><a href="http://ruby.learncodethehardway.org/book/ex2.html">Ugly ads</a> or monthly fees</li>
+</ul>
+<h2>A better solution: Open-source widgets and Backend as a Service (BaaS)</h2>
+<p>With taglines like &quot;Build apps fast without managing servers,&quot; there are already a number of commercial BaaS offerings.</p>
+<ul>
+<li><a href="https://www.firebase.com">Firebase</a></li>
+<li><a href="https://www.parse.com">Parse</a> (acquired by Facebook on April 25, 2013)</li>
+<li><a href="http://www.kinvey.com">Kinvey</a></li>
+<li><a href="http://www.kii.com">Kii</a></li>
+<li><a href="https://developer.stackmob.com">StackMob</a></li>
+</ul>
+<p>Please let me know if somehow I missed including your favorite JavaScript-supporting BaaS!</p>
+<h3>Pros - Commercial BaaS</h3>
+<ul>
+<li>Generalized, flexible</li>
+<li>Free tier is plenty for small stuff</li>
+<li>Allow integration across your widgets</li>
+<li>OAuth or custom auth</li>
+<li>Fine-grained control over your data</li>
+</ul>
+<h3>Cons - Commercial BaaS</h3>
+<ul>
+<li>Not portable to alternative hosting</li>
+<li>Obfuscated/closed source makes it hard to debug</li>
+<li>Except Firebase, most are primarily for native mobile apps</li>
+<li>VC-backing: acquisition or death?</li>
+</ul>
+<h2>The Dream: 100% FLOSS BaaS</h2>
+<p>Not much yet, <a href="http://helios.io">helios.io</a> (Ruby, iOS clients only) seems promising, especially since it has backing from Heroku.</p>
+<p>Some others I found by looking around are <a href="http://www.baasbox.com">BaasBox</a> (Java), <a href="https://github.com/demohi/end">End.js</a>
+(docs not in English), and <a href="https://github.com/datapimp/smooth">smooth.io</a> (a work in progress).</p>
+<h2>Why I care about this stuff</h2>
+<ul>
+<li>Marketing sites - Make one the day you get your idea</li>
+<li><a href="https://github.com/quartzmo/email-landing-page">Email landing page</a> - My earlier concept of a &quot;minimalist&quot; solution (Heroku, Sinatra, and Mailchimp)</li>
+<li><a href="http://backbonecoffeescript.com">backbonecoffeescript.com</a> - A rudimentary landing page with some dynamic content via <a href="https://storify.com/">Storify</a></li>
+<li>Interactive books - My platform: <a href="http://www.scriptybooks.com">scriptybooks.com</a></li>
+</ul>
+</div>
+  <p>By Chris Smith (@quartzmo)</p>
+</article>
+		</section>
+      </div>
+    <aside class="sidebar-nav span3">
+
+        <section class="well">
+      <ul id="recent_posts" class="nav nav-list">
+        <li class="nav-header">Posts</li>
+
+        
+          <li class="post">
+            <a href="/landing-page-with-yeoman-bower-grunt-and-node">Landing Page with Yeoman, Bower, Grunt, and a Node API Server</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/static-site-generation-with-node-js-and-coffeescript">Static Site Generation with Node.js and CoffeeScript</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/from-jekyll-octopress-to-docpad">From Jekyll/Octopress to DocPad</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/interactive-static-sites-with-jekyll-backbone-js-and-firebase">Interactive Static Sites With Jekyll, Backbone.js, and Firebase</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/railsconf-2013-keynotes-rails-4-vs-ember-dot-js">RailsConf 2013 Keynotes: Rails 4 vs Ember.js</a>
+          </li>
+       	
+          <li class="post">
+            <a href="/scriptybooks-open-source-step-one">ScriptyBooks open source, step one</a>
+          </li>
+       	
+      </ul>
+    </section>
+
+    </aside>
+   </div>
+    <div class="row-fluid">
+
+		<footer>
+			<p>Site &copy; ScriptyBooks LLC 2013, post content &copy; Chris Smith 2013</p>
+		</footer>
+   </div>
+	</div><!-- /container -->
+
+	<!-- Scripts -->
+	<script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script defer="defer"  src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script><script defer="defer"  src="/scripts/script.js"></script>
+
+  <script src="//static.getclicky.com/js" type="text/javascript"></script>
+  <script type="text/javascript">try{ clicky.init(100601902); }catch(e){}</script>
+  <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100601902ns.gif" /></p></noscript>
+
+</body>
+</html>

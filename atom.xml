@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>ScriptyBlog</title>
+	<link href="http://blog.scriptybooks.com/atom.xml" rel="self"/>
+	<link href="http://blog.scriptybooks.com"/>
+	<updated>2013-07-25T19:41:00.177Z</updated>
+	<id>http://blog.scriptybooks.com</id>
+	<author>
+		<name>ScriptyBooks</name>
+		<email>support@scriptybooks.com</email>
+	</author>
+
+	
+		<entry>
+			<title>Landing Page with Yeoman, Bower, Grunt, and a Node API Server</title>
+			<link href="http://blog.scriptybooks.com//landing-page-with-yeoman-bower-grunt-and-node"/>
+			<updated>2013-06-20T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//landing-page-with-yeoman-bower-grunt-and-node</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Wednesday, June 19, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;After building some static sites with &lt;a href=&quot;http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase/&quot;&gt;Jekyll&lt;/a&gt; and then &lt;a href=&quot;http://blog.scriptybooks.com/static-site-generation-with-node-js-and-coffeescript/&quot;&gt;DocPad&lt;/a&gt;, I decided that it might make sense to leverage &lt;a href=&quot;http://gruntjs.com/&quot;&gt;Grunt&lt;/a&gt; for the multitude of build steps such as asset minification and CoffeeScript compilation, rather than tool-specific plugins. This was confirmed by briefly working on my own DocPad plugin for downloading Web components, an effort that led me back to &lt;a href=&quot;http://bower.io/&quot;&gt;Bower&lt;/a&gt;, which despite some &lt;a href=&quot;https://twitter.com/maccaw/status/335537034309533697&quot;&gt;flaws&lt;/a&gt; has been growing in popularity as a package manager for the Web.&lt;/p&gt;
+&lt;p&gt;Well, if you want to quickly scaffold a Grunt and Bower project, it turns that the new &lt;a href=&quot;http://yeoman.io/&quot;&gt;Yeoman&lt;/a&gt; (1.0) makes it very easy to do. To get started, I used &lt;code&gt;yo webapp&lt;/code&gt; to redo a simple &lt;a href=&quot;http://www.angularjsbook.com/&quot;&gt;landing page for an AngularJS book&lt;/a&gt; that I&amp;#39;m considering writing. This was easy, although the &lt;a href=&quot;https://github.com/quartzmo/angularjsbook.com/blob/master/Gruntfile.js&quot;&gt;Grunt build&lt;/a&gt; produced by the &lt;a href=&quot;https://github.com/yeoman/generator-webapp&quot;&gt;Yeoman webapp generator&lt;/a&gt; contains far too much testing  (&lt;a href=&quot;http://visionmedia.github.io/mocha/&quot;&gt;Mocha&lt;/a&gt;, &lt;a href=&quot;http://phantomjs.org/&quot;&gt;PhantomJS&lt;/a&gt;) for such a simple page.&lt;/p&gt;
+&lt;p&gt;Taking time out to reflect on the slowness of the build, I tried out two non-Grunt Node site generators: &lt;a href=&quot;https://twitter.com/jaredhanson&quot;&gt;Jared Hanson&lt;/a&gt;&amp;#39;s &lt;a href=&quot;https://github.com/jaredhanson/kerouac/&quot;&gt;Kerouac&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/jescalan&quot;&gt;Jeff Escalante&lt;/a&gt;&amp;#39;s &lt;a href=&quot;http://roots.cx/&quot;&gt;Roots&lt;/a&gt;. Both are lean and blazing fast, but do not leverage a larger ecosystem of plugins or components. However, I will almost certainly come back to both of them.&lt;/p&gt;
+&lt;p&gt;Continuing with Yeoman, I decided to build a somewhat more ambitious single-page site, with a small &lt;a href=&quot;http://backbonejs.org/&quot;&gt;Backbone.js&lt;/a&gt; widget for signups backed by a light Node JSON API server. (I coded and deployed the server separately, although in the future I hope to mostly generate the server code from the front-end project.) Here is the finished result: The &lt;a href=&quot;http://www.quartzmo.com/tacoconfslc/&quot;&gt;TacoConf Salt Lake City&lt;/a&gt; landing page.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/taco_conf_who_is_going.jpg&quot; alt=&quot;tacoconfslc landing page&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Things went smoothly at first. Adding Backbone using Bower was very easy, although the Underscore dependency was &lt;a href=&quot;https://github.com/bower/bower/issues/172&quot;&gt;not handled automatically&lt;/a&gt;. (This made me &lt;a href=&quot;http://www.coffeescriptlove.com/2013/06/coffeescript-in-chrome-devtools.html&quot;&gt;think about using Browserify instead&lt;/a&gt; for JavaScript components.) But things got difficult when I needed different server host names for production and development. Yeoman&amp;#39;s &lt;a href=&quot;https://github.com/yeoman/grunt-usemin&quot;&gt;grunt-usemin&lt;/a&gt; plugin felt extremely limiting. I cobbled together a solution to the problem with &lt;a href=&quot;https://github.com/outaTiME/grunt-config&quot;&gt;grunt-config&lt;/a&gt; and &lt;a href=&quot;https://github.com/outaTiME/grunt-replace&quot;&gt;grunt-replace&lt;/a&gt;, but it made me seriously miss the power of a template-based asset pipeline such as the one provided by DocPad.&lt;/p&gt;
+&lt;p&gt;One of the better ideas I picked up from Yeoman is using &lt;a href=&quot;https://github.com/yeoman/yeoman/wiki/Deployment&quot;&gt;git subtree for deployment&lt;/a&gt; to GitHub Pages. On Mac/OS X, you currently need to re-install git with homebrew to get subtree, but it&amp;#39;s worth it. &lt;/p&gt;
+&lt;p&gt;Next in my lineup for static site generation with Grunt: &lt;a href=&quot;https://github.com/assemble/assemble&quot;&gt;Assemble&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+		<entry>
+			<title>Static Site Generation with Node.js and CoffeeScript</title>
+			<link href="http://blog.scriptybooks.com//static-site-generation-with-node-js-and-coffeescript"/>
+			<updated>2013-05-29T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//static-site-generation-with-node-js-and-coffeescript</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;Static Site Generation with Node.js and CoffeeScript | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;Static Site Generation with Node.js and CoffeeScript&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Tuesday, May 28, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;&lt;em&gt;This article was originally published on &lt;a href=&quot;http://www.coffeescriptlove.com/2013/05/static-site-generation-with-nodejs-and.html&quot;&gt;coffeescriptlove.com&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As I discussed in &lt;a href=&quot;http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase/&quot;&gt;&amp;quot;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&amp;quot;&lt;/a&gt;, static sites built using powerful Ruby-based tools such as &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt; and &lt;a href=&quot;https://github.com/middleman/middleman&quot;&gt;Middleman&lt;/a&gt; are surging in popularity based on their benefits: low hosting costs, speed, stability, and security. Jekyll has powered &lt;a href=&quot;http://kylerush.net/blog/meet-the-obama-campaigns-250-million-fundraising-platform/&quot;&gt;the Obama campaign&amp;#39;s $250 million fundraising platform&lt;/a&gt; as well as a &lt;a href=&quot;http://developmentseed.org/blog/new-healthcare-gov-is-open-and-cms-free/&quot;&gt;new version of healthcare.gov&lt;/a&gt;. Several months ago GitHub Co-Founder and CEO Tom Preston-Werner &lt;a href=&quot;https://github.com/mojombo/jekyll/issues/578#issuecomment-11414645&quot;&gt;renewed his commitment to Jekyll&lt;/a&gt;, writing, &amp;quot;Sorry for not keeping this thing moving faster. 2013 is gonna kick ass. Wake up, go to war.&amp;quot;&lt;/p&gt;
+&lt;p&gt;So, this certainly sounds like good news for rubyists. But is there a tool for creating static sites using Node.js and CoffeeScript?&lt;/p&gt;
+&lt;p&gt;Say hello to &lt;a href=&quot;http://docpad.org/&quot;&gt;DocPad&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/docpad-benefits.jpg&quot; alt=&quot;docpad home page&quot;&gt;&lt;/p&gt;
+&lt;p&gt;DocPad embraces CoffeeScript in a big way. &lt;/p&gt;
+&lt;p&gt;For starters, let&amp;#39;s take a look at a typical &lt;a href=&quot;https://github.com/docpad/kitchensink.docpad/blob/master/docpad.coffee&quot;&gt;DocPad configuration file&lt;/a&gt;. Whoa! Not only is it in CoffeeScript, it even contains functions! Used judiciously, the ability to include short, readable CoffeeScript functions in your configuration is quite handy. For an interesting example, check out the instructions for using &lt;a href=&quot;https://gist.github.com/balupton/5519403&quot;&gt;DocPad, GitHub and Prose as a Wiki&lt;/a&gt;. (Aside: After publishing this post, I will use &lt;a href=&quot;http://prose.io&quot;&gt;Prose&lt;/a&gt; and GitHub as described to add a link to my post to the official DocPad &lt;a href=&quot;http://docpad.org/docs/showcase&quot;&gt;showcase&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/bevry/docpad&quot;&gt;DocPad core&lt;/a&gt; and almost all of its &lt;a href=&quot;https://github.com/docpad&quot;&gt;community plugins&lt;/a&gt; are written in CoffeeScript, but that&amp;#39;s not all. Although DocPad supports &lt;a href=&quot;http://docpad.org/docs/plugins#renderers&quot;&gt;a long list of renderers&lt;/a&gt; that includes Handlebars and Jade in addition to PHP and Ruby, the project&amp;#39;s &lt;a href=&quot;http://docpad.org/docs/skeletons&quot;&gt;skeletons&lt;/a&gt; have a strong preference for &lt;a href=&quot;https://github.com/sstephenson/eco&quot;&gt;Eco (Embedded CoffeeScript)&lt;/a&gt; templates. For an example of a typical Eco template, check out &lt;a href=&quot;https://github.com/docpad/kitchensink.docpad/blob/master/src/documents/pages/getting-started.html.eco&quot;&gt;getting-started.html.eco&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you enjoy CoffeeScript and Eco (it also uses Backbone.js), I encourage you to jump in and give DocPad a try. I have posted &lt;a href=&quot;http://blog.scriptybooks.com/from-jekyll-octopress-to-docpad/&quot;&gt;my notes&lt;/a&gt; about porting &lt;a href=&quot;http://blog.scriptybooks.com&quot;&gt;blog.scriptybooks.com&lt;/a&gt; from Jekyll to DocPad, in case they might be of use.&lt;/p&gt;
+&lt;p&gt;Finally, no discussion of CoffeeScript and static site generators is complete without mentioning Jeremy Ashkenas&amp;#39; small but delightful &lt;a href=&quot;https://github.com/jashkenas/journo&quot;&gt;Journo&lt;/a&gt;. In just a single file of code-within-documentation &lt;a href=&quot;http://www.coffeescriptlove.com/2013/02/literate-coffeescript.html&quot;&gt;Literate CoffeeScript&lt;/a&gt;, Journo provides a everything you need for a minimalist tool, including deploys via rsync.&lt;/p&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+		<entry>
+			<title>From Jekyll/Octopress to DocPad</title>
+			<link href="http://blog.scriptybooks.com//from-jekyll-octopress-to-docpad"/>
+			<updated>2013-05-12T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//from-jekyll-octopress-to-docpad</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;From Jekyll/Octopress to DocPad | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;From Jekyll/Octopress to DocPad&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Saturday, May 11, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;&lt;img src=&quot;/images/docpad.jpg&quot; alt=&quot;docpad home page&quot;&gt;&lt;/p&gt;
+&lt;p&gt;After just three posts on &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt;, I decided to migrate &lt;a href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt; to &lt;a href=&quot;http://docpad.org/&quot;&gt;DocPad&lt;/a&gt;. Why? I&amp;#39;m trying to find the best platform for authoring interactive online technical books, for the next version of &lt;a href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Jekyll, the slightly more general project upon which Octopress is based, is a mature static site generation tool that has had a recent &lt;a href=&quot;http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/&quot;&gt;1.0 release&lt;/a&gt; and is again enjoying active development. However, both &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and &lt;a href=&quot;http://middlemanapp.com&quot;&gt;Middleman&lt;/a&gt; are Ruby-based, while DocPad runs on Node.js and is written in CoffeeScript, Backbone.js, and Eco templates. Just like my own interactive &lt;a href=&quot;http://www.scriptybooks.com/books/backbone-coffeescript&quot;&gt;Backbone.js + CoffeeScript&lt;/a&gt; book!&lt;/p&gt;
+&lt;p&gt;It took me a few hours to do the migration. Here are my notes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Update Node.js and npm. This is easy these days with the official installer.&lt;/li&gt;
+&lt;li&gt;Follow the install instructions. Node &lt;a href=&quot;http://substack.net/many_things&quot;&gt;tiny modules&lt;/a&gt; are for real. You may find it delightful, or alarming, to watch the npm install of DocPad.&lt;/li&gt;
+&lt;li&gt;I reacted with shock and shut down my network connection when I realized the &lt;code&gt;docpad run&lt;/code&gt; script was reporting back to the mother ship. After looking into the source code and thinking about it a bit, I decided this was okay.&lt;/li&gt;
+&lt;li&gt;Follow the Quick Start instructions for a bare install. So far, so good.&lt;/li&gt;
+&lt;li&gt;In a new directory, create a new project using an existing skeleton. After looking at the list of plugins used in several skeletons, I went with Twitter Bootstrap.&lt;/li&gt;
+&lt;li&gt;Copy over a post source file from the Octopress project. If post doesn&amp;#39;t show up in the list, it may be because you omitted the &amp;#39;post&amp;#39; tag that the DocPad example posts include. The &amp;#39;post&amp;#39; tag is used in a query and is required.&lt;/li&gt;
+&lt;li&gt;Encounter the EMFILE &amp;#39;too many open files&amp;#39; error. Waste time googling and tinkering before finally finding the correct solution in the &lt;a href=&quot;http://docpad.org/docs/troubleshoot&quot;&gt;DocPad troubleshoot page&lt;/a&gt;. Renew my vow to always RTFM.&lt;/li&gt;
+&lt;li&gt;Since file watching on OS X doesn&amp;#39;t seem to be working very well, follow troubleshoot page solution for switching to &amp;#39;watchFile&amp;#39;. The result is noticeably better though still not perfect. The &lt;a href=&quot;https://github.com/docpad/docpad-plugin-livereload&quot;&gt;livereload&lt;/a&gt; plugin works well for me.&lt;/li&gt;
+&lt;li&gt;Install the Highlight.js plugin for code highlighting. Plugin management with npm is awesome!&lt;/li&gt;
+&lt;li&gt;Convert Jekyll/Octopress image helper to markdown.&lt;/li&gt;
+&lt;li&gt;Customize Bootstrap. Replace &lt;code&gt;style.css.styl&lt;/code&gt; with &lt;code&gt;style.css.less&lt;/code&gt; and uninstall stylus plugin. Stylus may be cool, but on a Bootstrap project I think it makes sense to stick with Less.&lt;/li&gt;
+&lt;li&gt;Find Ben Delarre&amp;#39;s helpful post on &lt;a href=&quot;http://delarre.net/posts/creating-the-index-page.html&quot;&gt;creating an index page&lt;/a&gt; and use it to make something like the Octopress index page. So far so good with CoffeeScript and Eco!&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;docpad generate --env static&lt;/code&gt; and compare output against Octopress. It&amp;#39;s different of course, but looks good.&lt;/li&gt;
+&lt;li&gt;Waste time trying to figure out how to push &lt;code&gt;out&lt;/code&gt; directory from master as the top-level directory on GitHub. It turns out the ghpages plugin already takes care of this.&lt;/li&gt;
+&lt;li&gt;Fiddle with git to restore the blog source to the &lt;code&gt;master&lt;/code&gt; branch. (Octopress uses a &lt;code&gt;source&lt;/code&gt; branch.)&lt;/li&gt;
+&lt;li&gt;Deploy using the ghpages plugin with &lt;code&gt;docpad deploy-ghpages&lt;/code&gt;. See the glorious site live for a minute or so. Then see a GitHub 404 page.&lt;/li&gt;
+&lt;li&gt;Figure out that I forgot to copy &lt;a href=&quot;https://help.github.com/articles/my-custom-domain-isn-t-working&quot;&gt;the CNAME file&lt;/a&gt; from the Octopress blog to the DocPad &lt;code&gt;src&lt;/code&gt; directory. Deploy again.&lt;/li&gt;
+&lt;li&gt;Success!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you have any DocPad expertise to share, give me a shout on Twitter (&lt;a href=&quot;http://twitter.com/quartzmo&quot;&gt;@quartzmo&lt;/a&gt;). I&amp;#39;d love to connect with some people using it.&lt;/p&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+		<entry>
+			<title>Interactive Static Sites With Jekyll, Backbone.js, and Firebase</title>
+			<link href="http://blog.scriptybooks.com//interactive-static-sites-with-jekyll-backbone-js-and-firebase"/>
+			<updated>2013-05-03T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//interactive-static-sites-with-jekyll-backbone-js-and-firebase</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Thursday, May 02, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;&lt;em&gt;Note: This post was adapted from a &lt;a href=&quot;http://www.quartzmo.com/presentations/backbone-firebase-jekyll/&quot;&gt;slide presentation on quartzmo.com&lt;/a&gt;. That&amp;#39;s why it&amp;#39;s a bit heavy on bullet points.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The term &amp;quot;interactive static site&amp;quot; appears to be an oxymoron. In fact, they are all over the Web and have been for years.
+What&amp;#39;s relatively new are developer-oriented site generation tools such as Jekyll; JavaScript MVC frameworks such as Backbone.js, Ember.js, and AngularJS; and Backend as a Service (BaaS) platforms such as Firebase and Parse.&lt;/p&gt;
+&lt;h2&gt;Why static sites?&lt;/h2&gt;
+&lt;p&gt;Static web sites are extremely stable, secure, economical, and fast. They can be great for SEO and analytics, and work best when the &lt;em&gt;primary&lt;/em&gt; content is infrequently changed and document-oriented.
+This is true of most personal blogs, but also of many large sites, possibly even much e-commerce.
+A &lt;a href=&quot;http://developmentseed.org/blog/new-healthcare-gov-is-open-and-cms-free/&quot;&gt;new version of healthcare.gov&lt;/a&gt; is slated to
+be a massive static site, with content to be updated by non-technical users via &lt;a href=&quot;http://prose.io&quot;&gt;Prose&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Indeed, the page you are reading was created and deployed with &lt;a href=&quot;https://github.com/imathis/octopress&quot;&gt;Octopress&lt;/a&gt;, a blog-specific wrapper for the slightly more generic &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt; project. Jekyll is complex software, based on Ruby, Rake, and Git. &lt;a href=&quot;https://github.com/middleman/middleman&quot;&gt;Middleman&lt;/a&gt; may be even more complex than Jekyll, and reminds me of a command-line version of Rails. These are the heavyweight, mature solutions. For learning the concepts, check out something much simpler: Jeremy Ashkenas&amp;#39; delightfully readable &lt;a href=&quot;https://github.com/jashkenas/journo&quot;&gt;Journo&lt;/a&gt;, a single-file, Node-based tool that deploys via rsync.&lt;/p&gt;
+&lt;h2&gt;The problem: Some interactivity&lt;/h2&gt;
+&lt;p&gt;We are talking about &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;Sprinkles of JavaScript&lt;/a&gt;, not RIA: Most content is navigated through good old fashioned full-page reloads, but engaging the user
+requires scattered elements of interactive behavior and dynamic content.&lt;/p&gt;
+&lt;h2&gt;The current solution: Third-party widgets and services&lt;/h2&gt;
+&lt;p&gt;The ultimate example of a cross-site-loaded, service-backed widget may be &lt;a href=&quot;http://disqus.com&quot;&gt;Disqus&lt;/a&gt;, which is so popular for static blogs that it is a default in Octopress. On product and marketing sites, no doubt you have seen countless feedback and survey widgets. &lt;a href=&quot;https://www.uservoice.com&quot;&gt;UserVoice&lt;/a&gt; is one example.&lt;/p&gt;
+&lt;h3&gt;Pros - Third-party service&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Easy to integrate&lt;/li&gt;
+&lt;li&gt;Mature, complete, and ready&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons - Third-party service&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Third-party branding&lt;/li&gt;
+&lt;li&gt;Difficult or impossible to customize&lt;/li&gt;
+&lt;li&gt;Vendor lock-in&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ruby.learncodethehardway.org/book/ex2.html&quot;&gt;Ugly ads&lt;/a&gt; or monthly fees&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;A better solution: Open-source widgets and Backend as a Service (BaaS)&lt;/h2&gt;
+&lt;p&gt;With taglines like &amp;quot;Build apps fast without managing servers,&amp;quot; there are already a number of commercial BaaS offerings.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.firebase.com&quot;&gt;Firebase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.parse.com&quot;&gt;Parse&lt;/a&gt; (acquired by Facebook on April 25, 2013)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.kinvey.com&quot;&gt;Kinvey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.kii.com&quot;&gt;Kii&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://developer.stackmob.com&quot;&gt;StackMob&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please let me know if somehow I missed including your favorite JavaScript-supporting BaaS!&lt;/p&gt;
+&lt;h3&gt;Pros - Commercial BaaS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Generalized, flexible&lt;/li&gt;
+&lt;li&gt;Free tier is plenty for small stuff&lt;/li&gt;
+&lt;li&gt;Allow integration across your widgets&lt;/li&gt;
+&lt;li&gt;OAuth or custom auth&lt;/li&gt;
+&lt;li&gt;Fine-grained control over your data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Cons - Commercial BaaS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Not portable to alternative hosting&lt;/li&gt;
+&lt;li&gt;Obfuscated/closed source makes it hard to debug&lt;/li&gt;
+&lt;li&gt;Except Firebase, most are primarily for native mobile apps&lt;/li&gt;
+&lt;li&gt;VC-backing: acquisition or death?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;The Dream: 100% FLOSS BaaS&lt;/h2&gt;
+&lt;p&gt;Not much yet, &lt;a href=&quot;http://helios.io&quot;&gt;helios.io&lt;/a&gt; (Ruby, iOS clients only) seems promising, especially since it has backing from Heroku.&lt;/p&gt;
+&lt;p&gt;Some others I found by looking around are &lt;a href=&quot;http://www.baasbox.com&quot;&gt;BaasBox&lt;/a&gt; (Java), &lt;a href=&quot;https://github.com/demohi/end&quot;&gt;End.js&lt;/a&gt;
+(docs not in English), and &lt;a href=&quot;https://github.com/datapimp/smooth&quot;&gt;smooth.io&lt;/a&gt; (a work in progress).&lt;/p&gt;
+&lt;h2&gt;Why I care about this stuff&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Marketing sites - Make one the day you get your idea&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/quartzmo/email-landing-page&quot;&gt;Email landing page&lt;/a&gt; - My earlier concept of a &amp;quot;minimalist&amp;quot; solution (Heroku, Sinatra, and Mailchimp)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://backbonecoffeescript.com&quot;&gt;backbonecoffeescript.com&lt;/a&gt; - A rudimentary landing page with some dynamic content via &lt;a href=&quot;https://storify.com/&quot;&gt;Storify&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Interactive books - My platform: &lt;a href=&quot;http://www.scriptybooks.com&quot;&gt;scriptybooks.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+		<entry>
+			<title>RailsConf 2013 Keynotes: Rails 4 vs Ember.js</title>
+			<link href="http://blog.scriptybooks.com//railsconf-2013-keynotes-rails-4-vs-ember-dot-js"/>
+			<updated>2013-04-30T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//railsconf-2013-keynotes-rails-4-vs-ember-dot-js</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Monday, April 29, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;&lt;img src=&quot;/images/railsconf_2013_wycats_jessabean.png&quot; alt=&quot;railsconf_2013_wycats_jessabean.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Image source: &lt;a href=&quot;https://twitter.com/jessabean/status/329299671728136193&quot;&gt;https://twitter.com/jessabean/status/329299671728136193&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Recap&lt;/h2&gt;
+&lt;p&gt;Here&amp;#39;s a quick recap of the RailsConf 2013 keynotes from David Heinemeier Hansson (DHH) and Yehuda Katz:&lt;/p&gt;
+&lt;p&gt;First, David explained his firm commitment to server-side programming and provided an overview of Russian-doll caching, turbolinks, JavaScript helpers, and other details. The content of his keynote
+was remarkably similar to his blog post of over a year before, &lt;a href=&quot;http://37signals.com/svn/posts/3112-how-basecamp-next-got-to-be-so-damn-fast-without-using-much-client-side-ui&quot;&gt;How Basecamp Next got to be so damn fast without using much client-side UI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Yehuda&amp;#39;s keynote was an energetic, well-researched rebuttal to David&amp;#39;s that included many memorable sound-bites, such as
+&amp;quot;2012: The Year Rubyists Wrote Off JS Libraries.&amp;quot; I&amp;#39;ll update this post with a link to it when it becomes available on ConFreaks, as it&amp;#39;s so worth watching.&lt;/p&gt;
+&lt;h2&gt;Themes&lt;/h2&gt;
+&lt;p&gt;As the two sought to differentiate their approaches to modern Web apps, I found myself interested in three major themes.&lt;/p&gt;
+&lt;p&gt;The first theme, &lt;strong&gt;mental model&lt;/strong&gt;, is simply where your mind lives when you program your application. Are you writing Rails for the server or
+JavaScript for the client? This is pretty much a matter of taste, but as you can imagine, in the heart of Rubyland the burden of proof was
+on Yehuda for this one. It was enough for David to simply state something to the effect of Ruby being better.&lt;/p&gt;
+&lt;p&gt;The second theme is the &lt;strong&gt;organization&lt;/strong&gt; of JavaScript--or the lack of it, as Yehuda would point out, blaming the &amp;quot;Sprinkles of JavaScript&amp;quot;
+mentality for much &lt;em&gt;ad hoc&lt;/em&gt; JavaScript programming. Unfortunately, David has never revealed much about the substantial
+CoffeeScript portion of Basecamp, except to say that of the 10k or so lines of code, roughly a third is the
+Backbone-based calendar (a client-side app). Rails 4 will not provide any new facilities for organizing client-side code,
+as far as I know, which is a disappointment considering the innovations of the Rails Asset Pipeline. In this contest, which is really
+one of clarity and elegance, Yehuda&amp;#39;s vision is the stronger.&lt;/p&gt;
+&lt;p&gt;The third theme is the most technical and also by far the most interesting for me personally. This is the question of where to &lt;strong&gt;render HTML&lt;/strong&gt;, on the server or the client, and the implications of that decision for performance. I thought the best part of David&amp;#39;s keynote was when he argued that the great strength of HTML is
+its orientation toward documents, and further, that many web applications are appropriately document-centric. He provided examples of how small
+user-specific variations in documents could be made on the client, allowing a single master representation to be cached for all users on the server.
+Yehuda, arguing for rendering to be done on the client from JSON delivered from the server, attempted to use David&amp;#39;s examples as evidence that significant JavaScript programming is still required, and urged the audience to &amp;quot;embrace JavaScript.&amp;quot;&lt;/p&gt;
+&lt;h2&gt;My Conclusions&lt;/h2&gt;
+&lt;p&gt;As usual, I enjoyed Yehuda&amp;#39;s keynote immensely and agreed enthusiastically with almost everything he said while he was saying it. He is really such a great speaker.&lt;/p&gt;
+&lt;p&gt;But as I
+reflected afterward on his evidence for client-side rendering, I felt that something was amiss. The little modifications, changing a date to local time or showing an admin link, were exactly that, little changes. What David implied made sense to me, that in document-centric domains (he excluded games), the bulk of value in a document should not require dynamic modification. If a high-enough percentage of
+web content is exactly the same for all users with access to the web resource, then it really makes sense to do the rendering &lt;em&gt;once&lt;/em&gt; on the server,
+cache the result, and save clients the trouble and time of rendering &lt;em&gt;all&lt;/em&gt; of the content using JavaScript. And I wonder what that &amp;quot;high-enough&amp;quot; number really is? In the end, it may just be whatever you&amp;#39;re hoping to first see as your underpowered device loads the page over a slow connection.&lt;/p&gt;
+&lt;p&gt;Yehuda&amp;#39;s approach has elegance on its side, while David&amp;#39;s is a much uglier hybrid. But the hybrid appears to have
+serious performance advantages. If you haven&amp;#39;t already, you must read about Twitter&amp;#39;s experience with and partial retreat from client-side rendering in the &lt;a href=&quot;http://engineering.twitter.com/2012/05/improving-performance-on-twittercom.html&quot;&gt;&amp;quot;time to first tweet&amp;quot;&lt;/a&gt; post of May 29, 2012.&lt;/p&gt;
+&lt;p&gt;As always, a one-size-fits-all, one-tool-for-every-job approach is likely to lead to trouble. So you need to ask yourself, how document-oriented is
+your application?&lt;/p&gt;
+&lt;p&gt;Why does this matter to &lt;a href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;? An interactive, online book is at a far end of the spectrum. So far in fact that although the current implementation is based on Rails, I am experimenting with how &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;it might one day be a static site&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any thoughts, please comment below via my new open-source/Firebase alternative to Disqus, &lt;a href=&quot;https://github.com/quartzmo/discussion&quot;&gt;Discussion.js&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+		<entry>
+			<title>ScriptyBooks open source, step one</title>
+			<link href="http://blog.scriptybooks.com//scriptybooks-open-source-step-one"/>
+			<updated>2013-04-15T00:00:00.000Z</updated>
+			<id>http://blog.scriptybooks.com//scriptybooks-open-source-step-one</id>
+			<content type="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+	&lt;!-- Meta --&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+
+	&lt;!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	   More info: h5bp.com/i/378 --&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;
+
+	&lt;!-- Our site title and description --&gt;
+	&lt;title&gt;ScriptyBooks open source, step one | ScriptyBlog&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;The official blog of ScriptyBooks, with commentary on JavaScript programming, Web development, and online learning.&quot; /&gt;
+	&lt;meta name=&quot;keywords&quot; content=&quot;Web development, JavaScript, CoffeeScript, Backbone.js, MVC, Ruby, Rails, Node.js, HTML5, CSS3, Book, Tutorial&quot; /&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;ScriptyBooks&quot; /&gt;
+
+	&lt;!-- Output DocPad produced meta elements --&gt;
+	&lt;meta http-equiv=&quot;X-Powered-By&quot; content=&quot;DocPad v6.38.0&quot;/&gt;
+
+	&lt;!-- Mobile viewport optimized: h5bp.com/viewport --&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+
+	&lt;!-- Icons --&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;/icons/favicon.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/icons/apple-touch-icon-144x144.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/icons/apple-touch-icon-114x114.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;72x72&quot; href=&quot;/icons/apple-touch-icon-72x72.png&quot;&gt;
+    &lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/icons/apple-touch-icon.png&quot;&gt;
+
+	&lt;!-- Shims: IE6-8 support of HTML5 elements --&gt;
+	&lt;!--[if lt IE 9]&gt;
+		&lt;script async src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+	&lt;![endif]--&gt;
+
+	&lt;!-- Styles --&gt;
+	&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/twitter-bootstrap.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/styles/style.css&quot; /&gt;&lt;link  rel=&quot;stylesheet&quot; href=&quot;/vendor/highlightjs/idea.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Markup --&gt;
+	&lt;div class=&quot;navbar navbar-inverse navbar-fixed-top&quot;&gt;
+		&lt;div class=&quot;navbar-inner&quot;&gt;
+			&lt;div class=&quot;container&quot;&gt;
+				&lt;a class=&quot;brand&quot; href=&quot;/&quot;&gt;ScriptyBlog&lt;/a&gt;
+				&lt;ul class=&quot;nav&quot; style=&quot;margin-left: 40px;&quot;&gt;
+          &lt;li&gt;&lt;a class=&quot;brand&quot; href=&quot;http://www.scriptybooks.com&quot;&gt;ScriptyBooks&lt;/a&gt;&lt;/li&gt;
+					
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span9&quot;&gt;
+		&lt;section id=&quot;content&quot; class=&quot;content&quot;&gt;
+			&lt;article id=&quot;post&quot; class=&quot;post&quot;&gt;
+	&lt;h1&gt;ScriptyBooks open source, step one&lt;/h1&gt;
+  &lt;div class=&quot;post-date&quot;&gt;Sunday, April 14, 2013&lt;/div&gt;
+	&lt;div class=&quot;post-content&quot;&gt;&lt;p&gt;I&amp;#39;ve been intending to open-source the important parts of the ScriptyBooks stack since the beginning, but I never felt
+right about sharing it as a Rails app. My original &lt;em&gt;bookserver&lt;/em&gt; was a simple Node.js app and a command-line build tool, and that seemed like a
+better path for open source, although I didn&amp;#39;t get far down it before practical concerns on the business side led me to
+switch to Ruby, Nokogiri, and Rails.&lt;/p&gt;
+&lt;h3&gt;Enter the Jekyll&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; + &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is pretty cool stuff. Out of the box, the default blog doesn&amp;#39;t look like much....
+but the cmd-line blogging tool is solid. It leverages git and GitHub to the max.
+&lt;a href=&quot;http://octopress.org/docs/deploying/github/&quot;&gt;Deploying&lt;/a&gt; to &lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; is dialed in with its own &lt;code&gt;source&lt;/code&gt; branch.
+Octopress even includes tasks for updating from the original project:
+Here&amp;#39;s how you &lt;a href=&quot;http://octopress.org/docs/updating/&quot;&gt;update the software&lt;/a&gt;, all git based. I should have clued into this stuff a long time ago.&lt;/p&gt;
+&lt;p&gt;I think the git usage will impress you. Here&amp;#39;s a little taste of the experience:&lt;/p&gt;
+&lt;pre class=&quot;highlighted&quot;&gt;&lt;code class=&quot;bash&quot;&gt;csmith:scriptybooks.github.io quartzmo$ git status
+&lt;span class=&quot;comment&quot;&gt;# On branch master&lt;/span&gt;
+&lt;span class=&quot;comment&quot;&gt;# Your branch is ahead of 'octopress/master' by 5 commits.&lt;/span&gt;
+&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;
+nothing to commit (working directory clean)
+csmith:scriptybooks.github.io quartzmo$ git checkout source
+Switched to branch &lt;span class=&quot;string&quot;&gt;'source'&lt;/span&gt;
+Your branch and &lt;span class=&quot;string&quot;&gt;'origin/master'&lt;/span&gt; have diverged,
+and have 5 and 5 different commits each, respectively.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The messages about the branches diverging are nothing to worry about. They just show you&amp;#39;ve been busy with your blog.&lt;/p&gt;
+&lt;h3&gt;What do you think?&lt;/h3&gt;
+&lt;p&gt;Is Jekyll the right approach for writing interactive Web books? Please leave a comment. Oooops you can&amp;#39;t, because I didn&amp;#39;t
+enable the Disqus plugin (I can&amp;#39;t stand the ads that Disqus has been showing.) I&amp;#39;m thinking it&amp;#39;d be cool to have a comment widget that
+uses &lt;a href=&quot;http://www.firebase.com&quot;&gt;Firebase&lt;/a&gt;. What about that idea? Anyone want to help? Arrggh, until I have it done, you still can&amp;#39;t comment. (Tweet me &lt;a href=&quot;http://twitter.com/quartzmo&quot;&gt;@quartzmo&lt;/a&gt; instead.)&lt;/p&gt;
+&lt;/div&gt;
+  &lt;p&gt;By Chris Smith (@quartzmo)&lt;/p&gt;
+&lt;/article&gt;
+		&lt;/section&gt;
+      &lt;/div&gt;
+    &lt;aside class=&quot;sidebar-nav span3&quot;&gt;
+
+        &lt;section class=&quot;well&quot;&gt;
+      &lt;ul id=&quot;recent_posts&quot; class=&quot;nav nav-list&quot;&gt;
+        &lt;li class=&quot;nav-header&quot;&gt;Posts&lt;/li&gt;
+
+        
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/landing-page-with-yeoman-bower-grunt-and-node&quot;&gt;Landing Page with Yeoman, Bower, Grunt, and a Node API Server&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/static-site-generation-with-node-js-and-coffeescript&quot;&gt;Static Site Generation with Node.js and CoffeeScript&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/from-jekyll-octopress-to-docpad&quot;&gt;From Jekyll/Octopress to DocPad&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/interactive-static-sites-with-jekyll-backbone-js-and-firebase&quot;&gt;Interactive Static Sites With Jekyll, Backbone.js, and Firebase&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/railsconf-2013-keynotes-rails-4-vs-ember-dot-js&quot;&gt;RailsConf 2013 Keynotes: Rails 4 vs Ember.js&lt;/a&gt;
+          &lt;/li&gt;
+       	
+          &lt;li class=&quot;post&quot;&gt;
+            &lt;a href=&quot;/scriptybooks-open-source-step-one&quot;&gt;ScriptyBooks open source, step one&lt;/a&gt;
+          &lt;/li&gt;
+       	
+      &lt;/ul&gt;
+    &lt;/section&gt;
+
+    &lt;/aside&gt;
+   &lt;/div&gt;
+    &lt;div class=&quot;row-fluid&quot;&gt;
+
+		&lt;footer&gt;
+			&lt;p&gt;Site &amp;copy; ScriptyBooks LLC 2013, post content &amp;copy; Chris Smith 2013&lt;/p&gt;
+		&lt;/footer&gt;
+   &lt;/div&gt;
+	&lt;/div&gt;&lt;!-- /container --&gt;
+
+	&lt;!-- Scripts --&gt;
+	&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js&quot;&gt;&lt;/script&gt;&lt;script defer=&quot;defer&quot;  src=&quot;/scripts/script.js&quot;&gt;&lt;/script&gt;
+
+  &lt;script src=&quot;//static.getclicky.com/js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;try{ clicky.init(100601902); }catch(e){}&lt;/script&gt;
+  &lt;noscript&gt;&lt;p&gt;&lt;img alt=&quot;Clicky&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;//in.getclicky.com/100601902ns.gif&quot; /&gt;&lt;/p&gt;&lt;/noscript&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+		</entry>
+	
+</feed>

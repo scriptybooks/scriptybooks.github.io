@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url> <loc>http://blog.scriptybooks.com/scriptybooks-open-source-step-one</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/railsconf-2013-keynotes-rails-4-vs-ember-dot-js</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/interactive-static-sites-with-jekyll-backbone-js-and-firebase</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/from-jekyll-octopress-to-docpad</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/404</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/500</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/static-site-generation-with-node-js-and-coffeescript</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://blog.scriptybooks.com/landing-page-with-yeoman-bower-grunt-and-node</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+</urlset>
